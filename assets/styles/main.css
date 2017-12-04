@@ -1,29 +1,87 @@
+*{
+	padding: 0;
+	margin: 0;
+}
 body {
-  font-family: verdana, sans-serif;
+  font-family: "微软雅黑";
+}
+
+/* header*/ 
+header{
+	// height: 200px;
+	width: 100%;
+	margin: 0 auto;
+}
+nav{
+	height: 55px;
+	width: 100%;
+	background-color: #03c03c;
+}
+nav ul{
+	height: 55px;
+	width: 90%;
+	margin: auto;
+}
+nav ul li{
+	height: 55px;
+	width: 100px;
+	float: left;
+	list-style: none;
+	text-align: center;
+	line-height: 55px;
+	margin: 0;
+	padding: 0;
+	transition: all 0.3s ease-in-out;
+}
+nav ul li:hover{
+	background-color: #ccc;
+}
+nav ul li a{
+	text-decoration: none;
+	text-align: center;
+	color: #000;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+
+#main{
+	margin: 0 auto;
 }
 #wrapper {
-  margin: 0 auto;
-  width: 90%;
+	margin: auto;
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
 }
 
-#info {
-  text-align: center;
-  border: 1px solid green;
-  background-color: #b1d0f3;
-  margin-bottom: 30px;
+#titleZone{
+	width: 90%;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	background-color: #2d2d2d;
+	color: #fff;
 }
-#info p {
-  margin: 3px;
+#titleZone .titleItem{
 }
-#info .info-inner {
-  font-size: 14px;
-  margin: 0 auto;
-  text-align: left;
-  width: 390px;
+#titleZone .titleItem:nth-child(1){
+	width: 20%;
 }
+#titleZone .titleItem:nth-child(2){
+	width: 45%;
+}
+#titleZone .titleItem:nth-child(3){
+	width: 35%;
+}
+
 
 #settings {
-
+	width: 20%;
+	height: 700px;
+	background-color: #f5f5f5;
+	box-sizing: border-box;
+	padding: 5px;
 }
 #settings #duration {
   margin-bottom: 20px;
@@ -48,19 +106,21 @@ body {
 }
 
 .settings-left {
-  float: left;
+  	float: left;
 }
 .settings-right {
-  float: left;
-  margin-left: 300px;
-  margin-top: 100px;
+  	float: left;
 }
 
-#results {
-  border: 1px solid #ddd;
-  padding: 5px;
-  margin-top: 30px;
-  clear: both;
+
+/* 结果显示 */ 
+#results{
+	width: 45%;
+	height: 700px;
+	overflow: scroll;
+	padding: 5px;
+	box-sizing: border-box;
+	background-color: yellowgreen;
 }
 
 /**
@@ -166,12 +226,16 @@ li.simulation_log {
   margin-left: 50px;
 }
 
-/**
- * Style summary
- */
+
 #summary {
-  border: 1px solid green;
+  	width: 35%;
+  	height: 700px;
+  	overflow: scroll;
+  	padding: 5px;
+	box-sizing: border-box;
+	background-color: pink;
 }
+
 #summary table {
   margin: 10px 30px 20px 30px;
 }
@@ -185,4 +249,20 @@ li.simulation_log {
 #summary table td {
   padding: 5px;
   border: 1px solid #ddd;
+}
+
+
+
+/* footer */ 
+footer{
+	height: 45px;
+	width: 100%;
+	background-color: #2d2d2d;
+	clear: both;
+}
+footer p{
+	line-height: 45px;
+	font-size: 15px;
+	color: #fff;
+	text-align: center;
 }
