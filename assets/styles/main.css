@@ -15,7 +15,7 @@ header{
 nav{
 	height: 55px;
 	width: 100%;
-	background-color: #03c03c;
+	background-color: #2d2d2d;
 }
 nav ul{
 	height: 55px;
@@ -39,7 +39,7 @@ nav ul li:hover{
 nav ul li a{
 	text-decoration: none;
 	text-align: center;
-	color: #000;
+	color: #fff;
 	font-size: 20px;
 	font-weight: bold;
 }
@@ -60,8 +60,9 @@ nav ul li a{
 	margin: auto;
 	display: flex;
 	justify-content: space-between;
-	background-color: #2d2d2d;
+	background-color: #03c03c;
 	color: #fff;
+  text-align: center;
 }
 #titleZone .titleItem{
 }
@@ -79,12 +80,10 @@ nav ul li a{
 #settings {
 	width: 20%;
 	height: 700px;
-	background-color: #f5f5f5;
-	box-sizing: border-box;
+  box-sizing: border-box;
 	padding: 5px;
 }
 #settings #duration {
-  margin-bottom: 20px;
 }
 #settings #arrivaltable {
 
@@ -98,29 +97,24 @@ nav ul li a{
 #settings #tellerscount {
 
 }
+
+/*开始模拟演示按钮*/ 
 #settings #startsimulate {
-  background-color: lightgreen;
-  padding: 15px;
-  font-weight: bold;
-  text-transform: uppercase;
 }
 
 .settings-left {
-  	float: left;
 }
 .settings-right {
-  	float: left;
 }
 
 
 /* 结果显示 */ 
 #results{
-	width: 45%;
-	height: 700px;
-	overflow: scroll;
-	padding: 5px;
-	box-sizing: border-box;
-	background-color: yellowgreen;
+    width: 45%;
+    height: 700px;
+    overflow: scroll;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 /**
@@ -137,7 +131,7 @@ nav ul li a{
 }
 li {
   padding: 5px 0;
-  margin: 10px 0;
+  margin: 5px 0;
 }
 ul.inline-ul {
   padding: 0;
@@ -149,78 +143,101 @@ ul.inline-ul li {
   padding: 0 5px;
 }
 
+
+/*时间点样式*/
 li.clock_changed {
   border: 1px solid #CCCCCC;
-  color: #FF0000;
+  color: #000;
   font-family: verdana, sans-serif;
   font-weight: bold;
+  font-size: 18px;
   list-style-type: none;
   margin: 15px 0;
   padding: 15px;
   text-align: center;
-  background: #EEEEEE url('../images/clock.png') no-repeat left center;
+  background: #fffc00 url('../images/clock.png') no-repeat left center;
+  background-size: 45px;
 }
+/*顾客进入*/ 
 li.customer_enter {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: #DCFEDA url('../images/customer.png') no-repeat left center;
+  background-size: 45px;
+
 }
+/* 顾客得到服务 */ 
 li.customer_getservice {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: #00ff00 url('../images/customer.png') no-repeat left center;
+  background-size: 45px;
+
 }
+/* 顾客离开 */ 
 li.customer_exit {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: #710909 url('../images/customer.png') no-repeat left center;
   color: #fff;
+  background-size: 45px;
+
 }
 li.tellermanagaer_create_teller {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: url('../images/tellermanager.png') no-repeat left center;
   border: 1px solid #000;
+  background-size: 45px;
+
 }
 li.tellermanager_increase {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: url('../images/speaker.png') no-repeat left center;
   border: 1px solid #000;
+  background-size: 45px;
 }
 li.tellermanager_listfree {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: url('../images/tellermanager.png') no-repeat left center;
   border: 1px solid #000;
+  background-size: 45px;
 }
 li.teller_state_busy {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: #d33682 url('../images/teller.png') no-repeat left center;
+  background-size: 45px;
 }
 li.teller_state_free {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: #8ae234 url('../images/teller.png') no-repeat left center;
+  background-size: 45px;
 }
 li.queue_log {
   list-style-type: none;
   padding: 25px 0 25px 100px;
-  background: #e0f2be url('../images/queue.jpg') no-repeat left center;
+  background: #e0f2be url('../images/queue.png') no-repeat left center;
+  background-size: 45px;
 }
 li.numberingmachine_increase {
   list-style-type: none;
   padding: 25px 0 25px 48px;
   background: url('../images/numberingmachine.png') no-repeat left center;
+  background-size: 45px;
 }
 li.simulation_start {
-  list-style-type: none;
-  border: 1px solid #000;
+  // list-style-type: none;
+  // border: 1px solid #000;
+  background-color: #03c03c;
+  text-align: center;
 }
 li.simulation_finish {
-  list-style-type: none;
-  border: 1px solid #000;
+   background-color: #03c03c;
+  text-align: center;
 }
 li.simulation_log {
   margin-left: 50px;
@@ -233,7 +250,7 @@ li.simulation_log {
   	overflow: scroll;
   	padding: 5px;
 	box-sizing: border-box;
-	background-color: pink;
+	// background-color: pink;
 }
 
 #summary table {

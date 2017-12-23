@@ -1,16 +1,13 @@
-/**
- * Wrap jQuery auto start code.
- */
+// jQuery匿名函数.
 (function($) {
   $(document).ready(function() {
-    //Generate random date for customer arrival table on load and on click
-    //generateRandomTable();
+    // 点击产生随机数据按钮，用于产生客户到达时的随机数队列
     $('#generaterandom').click(generateRandomTable);
     $('#startsimulate').click(function() {
       if (SIMULATION_STARTED) {
-        if (confirm("This will reload the page to prepare a fresh state.\n" +
-            "You should click this button again after reload. \n" +
-            "Are you sure?")) {
+        if (confirm("该页面将进行刷新，当前页面所有数据都会丢失！\n" +
+            "页面刷新成功后你需要重新点击该按钮产生数据. \n" +
+            "继续?")) {
           location.reload();
         }
       }
@@ -22,21 +19,20 @@
   });
 })(jQuery);
 
-/**
- * Logging system types
- */
+ 
+ // 打印系统类型
 LOGTYPES = {
-  'disabled' : 0,
-  'console' : 1,
-  'alert' : 2
+    'disabled' : 0,
+    'console' : 1,
+    'alert' : 2
 };
 
-//set log type to console for debugging.
+
+// 设置log类型用于debugge
 logtype = LOGTYPES.console;
 
-/**
- * Logging system object
- */
+
+// 打印系统对象
 LOG = {
   'warn' : function() {
     var msg = jQuery.makeArray(arguments).join("\n");
@@ -88,52 +84,50 @@ LOG = {
   }
 };
 
-/**
- * Global CLOCK (for time tracking)
- * stores simulated time in minutes
- */
+
+ // 全局时钟，用于时间追踪（用分钟存储模拟时间）
 CLOCK = 0;
 
-/**
- * Indicates whether simulation has been started.
- */
+
+// 初始化模拟状态，开始为false
 SIMULATION_STARTED = false;
 
-/**
- * Holds all customers that have been created (entered the bank).
- */
+
+ // 用于存储被创建出的所有顾客（来到银行的顾客）
 AllCustomers = [];
 
-/**
- * Enum TellerState
- */
+
+// 使用TellerState对象来枚举服务人员的状态：空闲/忙碌
 TellerState = {
-  'Free' : 0,
-  'Busy' : 1
+    'Free' : 0,
+    'Busy' : 1
 };
 
-/**
- * Enum CustomerState
- */
+
+// 使用CustomerState对象来枚举顾客的状态
+// 1. 等待服务
+// 2. 被服务
+// 3. 服务完毕
 CustomerState = {
-  'WaitingForService' : 0,
-  'InService' : 1,
-  'FinishedJob' : 2
+    'WaitingForService' : 0,
+    'InService' : 1,
+    'FinishedJob' : 2
 };
 
-/**
- * Enum: System State Logging service.
- */
+
+// 枚举系统的状态
 SystemStateLog = [];
 SystemStateLogTypes = {
-  'Customer' : {
-    'Enter' : 'customer_enter', //new customer enters.
-    'GetService' : 'customer_getservice', //customer gets service.
-    'Exit' : 'customer_exit' //customer's job is finished.
-  },
+    'Customer': {
+        'Enter': 'customer_enter', //new customer enters.
+        'GetService': 'customer_getservice', //customer gets service.
+        'Exit': 'customer_exit' //customer's job is finished.
+    },
   'TellerManager' : {
-    'CreateTeller' : 'tellermanagaer_create_teller', //new teller created by system.
-    'Increase' : 'tellermanager_increase', //Speaker Calls new customer.
+    'CreateTeller' : 'tellermanagaer_create_teller', 
+    //new teller created by system.
+    'Increase' : 'tellermanager_increase', 
+    //叫号器呼叫新用户
     'ListFreeTellers' : 'tellermanager_listfree'
   },
   'Teller' : {
@@ -156,7 +150,7 @@ SystemStateLogTypes = {
 /**
  * Log a new system state message.
  * this log will later be rendered for display.
- */
+ 
 function SystemState_log(type, msg) {
   if (typeof(SystemStateLog[CLOCK]) == 'undefined') {
     SystemStateLog[CLOCK] = [];
@@ -244,8 +238,8 @@ TellerManager = {
     this.tellers.push(teller);
 
     //Log create teller
-    SystemState_log(SystemStateLogTypes.TellerManager.CreateTeller, "Teller created");
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Teller id: " + teller.tellerid);
+    SystemState_log(SystemStateLogTypes.TellerManager.CreateTeller, "服务人员就绪");
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员 id: " + teller.tellerid);
   },
 
   /**
@@ -308,8 +302,8 @@ TellerManager = {
     LOG.debug('called TellerManager.increaseNumber()');
 
     //Log increase number
-    SystemState_log(SystemStateLogTypes.TellerManager.Increase, "Speaker calls new customer.");
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "New number: " + (this.lastnumber + 1));
+    SystemState_log(SystemStateLogTypes.TellerManager.Increase, "叫号器呼叫新用户");
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "新号码: " + (this.lastnumber + 1));
 
     return ++this.lastnumber;
   }
@@ -331,8 +325,8 @@ NumberingMachine = {
     LOG.debug('called NumberingMachine.increase()');
 
     //Log increase
-    SystemState_log(SystemStateLogTypes.NumberingMachine.Increase, "Numbering machine generated new number.");
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "New number: " + (this.number + 1));
+    SystemState_log(SystemStateLogTypes.NumberingMachine.Increase, "发号机产生新号码");
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "新号码: " + (this.number + 1));
 
     return ++this.number;
   }
@@ -373,12 +367,12 @@ function Teller(id) {
     this.customerid = customerid;
 
     //Log Tellers becomes busy
-    SystemState_log(SystemStateLogTypes.Teller.StateBusy, "Teller becomes busy.");
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Teller id: " + this.tellerid);
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Accepted customer id: " + customerid);
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Total free time is: " +
+    SystemState_log(SystemStateLogTypes.Teller.StateBusy, "服务人员开始服务");
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员 id: " + this.tellerid);
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "被服务顾客 id: " + customerid);
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "总闲暇时间: " +
         this.getTotalFreeTime() + ' minutes.');
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Total busy time is: " +
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "总服务时间: " +
         this.getTotalBusyTime() + ' minutes.');
 
     //Log free tellers
@@ -471,9 +465,9 @@ function Customer() {
     this.state = CustomerState.InService;
 
     //Log customer gets service
-    SystemState_log(SystemStateLogTypes.Customer.GetService, "Customer gets service");
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Customer id: " + this.customerid);
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Customer total wait time: " +
+    SystemState_log(SystemStateLogTypes.Customer.GetService, "顾客得到服务");
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客 id: " + this.customerid);
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客等待时间总长: " +
         this.getTotalWaitTime());
   };
   
@@ -484,11 +478,11 @@ function Customer() {
     this.exitTime = CLOCK;
     this.state = CustomerState.FinishedJob;
 
-    //Log customer leaves the bank
-    SystemState_log(SystemStateLogTypes.Customer.Exit, "Customer leaves the bank.");
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Customer id: " + this.customerid);
-    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Customer leaved the bank after: " +
-        (this.exitTime - this.enterTime) + ' minutes.');
+    // 打印顾客离开银行
+    SystemState_log(SystemStateLogTypes.Customer.Exit, "顾客离开银行");
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客 id: " + this.customerid);
+    SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客在银行总逗留时间：" +
+        (this.exitTime - this.enterTime) + '分钟');
   };
   
   /**
@@ -499,8 +493,8 @@ function Customer() {
   };
 
   //Log Customer enters the bank
-  SystemState_log(SystemStateLogTypes.Customer.Enter, "New customer entered bank");
-  SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "Customer id: " + this.customerid);
+  SystemState_log(SystemStateLogTypes.Customer.Enter, "顾客进入银行");
+  SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客 id: " + this.customerid);
 }
 
 /**
@@ -513,7 +507,7 @@ CustomerQueue = new Queue();
  */
 function start_simulate() {
   SIMULATION_STARTED = true;
-  SystemState_log(SystemStateLogTypes.SimulationEngine.Start, 'Simulation started');
+  SystemState_log(SystemStateLogTypes.SimulationEngine.Start, '模拟演示开始');
 
   //Initialize variables
   var duration = Number($('#duration').val())
@@ -613,14 +607,17 @@ function start_simulate() {
     }
   }
 
-  SystemState_log(SystemStateLogTypes.SimulationEngine.Finish, 'Simulation finished.');
+  // 模拟演示结束
+  SystemState_log(SystemStateLogTypes.SimulationEngine.Finish, '模拟演示结束');
   RenderingEngine.render(SystemStateLog);
 
   jQuery('#results').html(RenderingEngine.getRenderedOutput());
 }
 
+
+
 /**
- * Collect final summary
+ * 总结演示结果
  */
 Statistics = {
   'customers' : [],
@@ -641,10 +638,10 @@ function collect_summary() {
 function collect_summary_customers() {
   var result = '<table>';
   result += '<tr>' +
-      '<th>Customer id</th>' +
-      '<th>Enter Time</th>' +
-      '<th>Exit Time</th>' +
-      '<th>Total Wait time</th>' +
+      '<th>顾客 ID</th>' +
+      '<th>进入时间</th>' +
+      '<th>离开时间</th>' +
+      '<th>等待时长</th>' +
       '</tr>';
   for (var i = 0; i < AllCustomers.length; i++) {
     var customer = AllCustomers[i];
@@ -673,9 +670,9 @@ function collect_summary_customers() {
 function collect_summary_tellers() {
   var result = '<table>';
   result += '<tr>' +
-      '<th>Teller id</th>' +
-      '<th>Total Free Time</th>' +
-      '<th>Total Busy Time</th>' +
+      '<th>出纳 ID</th>' +
+      '<th>闲暇时长</th>' +
+      '<th>服务时长</th>' +
       '</tr>';
   for (var i = 0; i < TellerManager.tellers.length; i++) {
     var teller = TellerManager.tellers[i];
@@ -726,9 +723,9 @@ function collect_summary_overall() {
   average_teller_free = sum_teller_free / count_teller;
 
   var result = '<ul>';
-  result += '<li>Average Customer wait tome: ' + average_customer_wait + '</li>' +
-      '<li>Average Teller Free time: ' + average_teller_free + '</li>' +
-      '<li>Average Teller Busy time: ' + average_teller_busy + '</li>';
+  result += '<li>顾客平均等待时间: ' + average_customer_wait + '</li>' +
+      '<li>出纳平均闲暇时间: ' + average_teller_free + '</li>' +
+      '<li>出纳平均服务时间: ' + average_teller_busy + '</li>';
   result += '</ul>';
 
   return result;

@@ -1,42 +1,24 @@
-/*
-
-Queue.js
-
-A function to represent a queue
-
-Created by Stephen Morley - http://code.stephenmorley.org/ - and released under
-the terms of the CC0 1.0 Universal legal code:
-
-http://creativecommons.org/publicdomain/zero/1.0/legalcode
-
+/*  Queue.js
+  用于表示队列的函数
 */
 
-/* Creates a new queue. A queue is a first-in-first-out (FIFO) data structure -
- * items are added to the end of the queue and removed from the front.
- */
+ /*
+    创建一个队列结构，一个队列是一个先进先出（FIFO）的数据结构，数据项被添加到队列的尾部，从队列头部移除数据
+ */ 
 function Queue(){
+    // 初始化
+    var queue  = [];
+    var offset = 0;
 
-  // initialise the queue and offset
-  var queue  = [];
-  var offset = 0;
+    // 获取队列长度
+    this.getLength = function(){
+        return (queue.length - offset);
+    };
 
-  /* Returns the length of the queue.
-   */
-  this.getLength = function(){
-
-    // return the length of the queue
-    return (queue.length - offset);
-
-  };
-
-  /* Returns true if the queue is empty, and false otherwise.
-   */
-  this.isEmpty = function(){
-
-    // return whether the queue is empty
-    return (queue.length == 0);
-
-  };
+    // 判断队列是否为空，若队列为空，返回true，否则返回false
+    this.isEmpty = function(){
+      return (queue.length == 0);
+    };
 
   /* Enqueues the specified item. The parameter is:
    *
