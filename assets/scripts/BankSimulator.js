@@ -150,7 +150,7 @@ SystemStateLogTypes = {
 /**
  * Log a new system state message.
  * this log will later be rendered for display.
- 
+ */
 function SystemState_log(type, msg) {
   if (typeof(SystemStateLog[CLOCK]) == 'undefined') {
     SystemStateLog[CLOCK] = [];
@@ -639,7 +639,7 @@ function collect_summary_customers() {
   var result = '<table>';
   result += '<tr>' +
       '<th>顾客 ID</th>' +
-      '<th>进入时间</th>' +
+      '<th>到达时间</th>' +
       '<th>离开时间</th>' +
       '<th>等待时长</th>' +
       '</tr>';

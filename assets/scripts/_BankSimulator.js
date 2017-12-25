@@ -135,9 +135,9 @@ SystemStateLogTypes = {
 	},
 
 	// 
-	"TellerManger": {
+	"TellerManager": {
 		// 系统产生服务人员
-		"CreateTeller": "createmanager_create_teller",
+		"CreateTeller": "tellermanagaer_create_teller",
 		// 叫号器呼叫新用户
 		"Increase": "tellermanager_increase",
 		// 列举空闲服务人员
@@ -176,6 +176,33 @@ SystemStateLogTypes = {
 };
 
 
+// 打印信息函数，用于在页面上输出系统状态信息
+function SystemState_log(type, msg){
+	if(typeof(SystemStateLog[CLOCK]) == "undefined"){
+		SystemStateLog[CLOCK] = [];
+	}
+
+	 //if this is an object, its Queue object. we render it immediately
+	 var newmsg;
+	 if(typeof msg == "object"){
+	 	if(msg.hasOwnProperty("getAll")){
+	 		newmsg = RenderingEngine.renderQueue(msg);
+	 	}
+	 	else{
+	 		newmsg = msg;
+	 	}
+	 }
+	 else{
+	 	newmsg = msg;
+	 }
+	 SystemStateLog[CLOCK][SystemStateLog[CLOCK].length] = {
+	 	"message": newmsg,
+	 	"type": type,
+	 	"clock": CLOCK
+	 };
+}
+
+
 // 产生随机整数
 function getRandomInt(min, max){
 	return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -192,7 +219,7 @@ function generateRandomTable(){
 	max_time;
 
 	// 产生相邻的随机时间点
-	for(var i=1; i<= customer_count; i++){
+	for(var i=1; i<=customer_count; i++){
 		max_time = prev_time + 5;
 		if(max_time > duration - 5){
 			max_time = duration - 5;
@@ -212,7 +239,7 @@ function generateRandomTable(){
 
 
 // 管理服务人员
-TellerManger = {
+TellerManager = {
 	// @internal
 	"tellers": [],
 	"lastnumber": 0,
@@ -224,8 +251,8 @@ TellerManger = {
 		this.tellers.push(teller);
 
 		// 打印服务人员
-		SystemState_log(SystemStateLogTypes.tellerManager.CreateTeller, "服务人员就绪");
-		SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员ID: " teller.tellerid);
+		SystemState_log(SystemStateLogTypes.TellerManager.CreateTeller, "服务人员就绪");
+		SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员ID: " + teller.tellerid);
 	},
 
 	// 通过ID获取服务人员对象
@@ -256,7 +283,7 @@ TellerManger = {
 		LOG.debug("called TellerManager.getWaitingNumbers()");
 		var result = [];
 		this.tellers.forEach(function(teller1){
-			if(teller1.state == TellerState.free){
+			if(teller1.state == TellerState.Free){
 				result.push(teller1.customerid);
 			}
 		});
@@ -266,7 +293,7 @@ TellerManger = {
 	// 检验一个顾客ID是否能立刻得到服务
 	"searchForWaitingCustomer": function(customerid){
 		LOG.debug("called TellerManager.searchForWaitingCustomer(" + customerid + ")");
-		var getWaitingNumbers = this.getWaitingNumbers();
+		var waitingNumbers = this.getWaitingNumbers();
 		return (waitingNumbers.indexOf(customerid) >= 0);
 	},
 
@@ -401,7 +428,7 @@ function Customer(){
 	// 应该在顾客被服务时被服务人员设定
 	this.tellerid = 0;
 	this.state = CustomerState.WaitingForService;
-	this.enterTimer = CLOCK;
+	this.enterTime = CLOCK;
 	this.inServiceTime = null;
 	this.exitTime = null;
 
@@ -422,13 +449,13 @@ function Customer(){
 		// 打印顾客离开银行的信息
 		SystemState_log(SystemStateLogTypes.Customer.Exit, "顾客离开银行");
 		SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客ID: " + this.customerid);
-		SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客银行总停留时间: " + (this.exitTime - this.enterTimer) + "分钟");
+		SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "顾客银行总停留时间: " + (this.exitTime - this.enterTime) + "分钟");
 	};
 
 	// 获取总等待时间
 	this.getTotalWaitTime = function(){
 		// 开始服务时间 - 进入银行时间
-		return this.inServiceTime - this.enterTimer;
+		return this.inServiceTime - this.enterTime;
 	};
 
 	// 打印顾客进入银行信息
@@ -508,9 +535,147 @@ function start_simulate(){
 
 		// 检查顾客可以得到服务
 		while(true){
-			
+			var last_customer = CustomerQueue.peek();
+			if(typeof (last_customer) == "undefined"){
+				break;
+			}
+			var last_customer_can_get_service = TellerManager.searchForWaitingCustomer(last_customer.customerid);
+			// 顾客可以得到服务
+			if(last_customer_can_get_service){
+				customer = CustomerQueue.dequeue();
+				var freeTellers = TellerManager.getFreeTellers();
+				var SelectedfreeTeller;
+				for(var freeTellerC = 0; freeTellerC < freeTellers.length; freeTellerC++){
+					if(freeTellers[freeTellerC].customerid == customer.customerid){
+						SelectedfreeTeller = freeTellers[freeTellerC];
+						break;
+					}
+				}
+				customer.tellerid = SelectedfreeTeller.tellerid;
+				customer.setStateInService();
+
+				// 打印队列
+				SystemState_log(SystemStateLogTypes.Queue.Log, CustomerQueue);
+				var theTeller = TellerManager.getTeller(customer.tellerid);
+				theTeller.setStateBusy(customer.customerid);
+			}
+			else{
+				break;
+			}
 		}
 	}
+
+	// 模拟结束
+	SystemState_log(SystemStateLogTypes.SimulationEngine.Finish, "模拟演示结束");
+	RenderingEngine.render(SystemStateLog);
+
+	jQuery("#results").html(RenderingEngine.getRenderedOutput());
 }
 
+
+// 总结演示结果
+Statistics = {
+	"customers": [],
+	"tellers": []
+};
+
+// 收集总结结果
+function collect_summary(){
+	var result = "";
+	result += collect_summary_customers();
+	result += collect_summary_tellers();
+	result += collect_summary_overall();
+	return result;
+}
+
+// 顾客结果总结
+function collect_summary_customers(){
+	var result = "<table>";
+	result += "<tr>" + 
+	"<th>顾客ID</th>" + 
+	"<th>到达时间</th>" + 
+	"<th>离开时间</th>" + 
+	"<th>等待时长</th>" + 
+	"</tr>";
+	for(var i=0; i<AllCustomers.length; i++){
+		var customer = AllCustomers[i];
+		if(typeof customer != "object"){
+			continue;
+		}
+		result += "<tr>";
+		result += "<td>" + customer.customerid + "</td>";
+		Statistics.customers[customer.customerid] = {};
+		result += "<td>" + customer.enterTime + "</td>";
+		Statistics.customers[customer.customerid].enterTime = customer.enterTime;
+		result += "<td>" + customer.exitTime + "</td>";
+		Statistics.customers[customer.customerid].exitTime = customer.exitTime;
+		result += "<td>" + customer.getTotalWaitTime() + "</td>";
+		Statistics.customers[customer.customerid].TotalWaitTime = customer.getTotalWaitTime();
+		result += "</tr>";
+	}
+	result += "</table>";
+	return result;
+}
+
+
+// 收集服务人员信息
+function collect_summary_tellers(){
+	var result = "<table>";
+	result += "<tr>" + 
+	"<th>员工ID</th>" +
+	"<th>空闲时间</th>" +
+	"<th>忙碌时间</th>" +
+	"</tr>";
+	for(var i=0; i<TellerManager.tellers.length; i++){
+		var teller = TellerManager.tellers[i];
+		if(typeof teller != "object"){
+			continue;
+		}
+		result += "<tr>";
+		result += "<td>" + teller.tellerid + "</td>";
+		Statistics.tellers[teller.tellerid] = {};
+		result += "<td>" + teller.getTotalFreeTime() + "</td>";
+		Statistics.tellers[teller.tellerid].TotalFreeTime = teller.getTotalFreeTime();
+		result += "<td>" + teller.getTotalBusyTime() + "</td>";
+		Statistics.tellers[teller.tellerid].TotalBusyTime = teller.getTotalBusyTime();
+		result += "</tr>";
+	}
+	result += "</table>";
+	return result;
+}
+
+
+// 收集综合结果
+function collect_summary_overall(){
+	var sum_customer_wait = 0,
+		sum_teller_free = 0,
+		sum_teller_busy = 0;
+	var average_customer_wait = 0,
+		average_teller_free = 0,
+		average_teller_busy = 0;
+
+	// 顾客等待时间
+	for(var count_customer = 1; count_customer < Statistics.customers.length; count_customer++){
+		sum_customer_wait += Statistics.customers[count_customer].TotalWaitTime;
+	}
+	count_customer--;
+	average_customer_wait = sum_customer_wait / count_customer;
+
+	for(var count_teller = 1; count_teller < Statistics.tellers.length; count_teller++){
+		sum_teller_free += Statistics.tellers[count_teller].TotalFreeTime;
+		sum_teller_busy += Statistics.tellers[count_teller].TotalBusyTime;
+	}
+	count_teller--;
+
+	average_teller_busy = sum_teller_busy / count_teller;
+	average_teller_free = sum_teller_free / count_teller;
+
+	var result = "<ul>";
+	result += 
+		"<li>顾客平均等待时间: " + average_customer_wait + "</li>" +
+		"<li>员工平觉空闲时间: " + average_teller_free + "</li>" +
+		"<li>员工平均忙碌时间: " + average_teller_busy + "</li>" ;
+	result += "</ul>";
+	return result;
+}
 

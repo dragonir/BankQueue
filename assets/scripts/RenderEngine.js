@@ -32,7 +32,7 @@ RenderingEngine = {
 
         //If clock changed, insert a row for this.
         if (clockChanged) {
-          RenderingEngine.appendItem("CLOCK: " + clock, "clock_changed");
+          RenderingEngine.appendItem("时钟: " + clock, "clock_changed");
         }
 
         switch (type) {
