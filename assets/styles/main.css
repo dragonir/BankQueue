@@ -1,14 +1,13 @@
 *{
-	padding: 0;
-	margin: 0;
+    padding: 0;
+    margin: 0;
 }
 body {
-  font-family: "微软雅黑";
+    font-family: "微软雅黑";
 }
 
 /* header*/ 
 header{
-	// height: 200px;
 	width: 100%;
 	margin: 0 auto;
 }
@@ -45,8 +44,9 @@ nav ul li a{
 }
 
 
+/* main */
 #main{
-	margin: 0 auto;
+	 margin: 0 auto;
 }
 #wrapper {
 	margin: auto;
