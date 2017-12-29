@@ -3,59 +3,28 @@
 <head>
 	<title>银行排队系统模拟演示</title>
 	<meta charset="utf-8">
-	
 	<!-- 图标 -->
 	<link rel="shortcut icon" href="./assets/images/bank.ico">
-	<!-- 描述文件 -->
-
-
 	<!-- 外部样式表 -->
-  	<link rel="stylesheet" type="text/css" href="./assets/scripts/jquery-ui-1.10.3/themes/base/jquery.ui.all.css" />
-	<!-- <link rel="stylesheet" type="text/css" href="./assets/styles/main.css"> -->
-	<link rel="stylesheet" type="text/css" href="./assets/styles/_main.css">
-
-
-	<!-- scripts -->
-	<script type="text/javascript" src="./assets/scripts/jquery-2.0.3.min.js"></script>
-	<script type="text/javascript" src="./assets/scripts/jquery-ui-1.10.3/ui/minified/jquery-ui.min.js"></script>
-	
-	<script type="text/javascript" src="./assets/scripts/_Queue.js"></script>
-
-	<script type="text/javascript" src="./assets/scripts/phpjs/functions/strings/explode.js"></script>
-	<script type="text/javascript" src="./assets/scripts/phpjs/functions/strings/str_replace.js"></script>
-	<script type="text/javascript" src="./assets/scripts/phpjs/functions/strings/echo.js"></script>
-	<script type="text/javascript" src="./assets/scripts/phpjs/functions/datetime/time.js"></script>
-	<script type="text/javascript" src="./assets/scripts/phpjs/functions/var/print_r.js"></script>
-	<script type="text/javascript" src="./assets/scripts/phpjs/functions/var/var_dump.js"></script>
-
-
-	<!-- my scripts -->
-	<script type="text/javascript" src="./assets/scripts/RenderEngine.js"></script>
-	<script type="text/javascript" src="./assets/scripts/_BankSimulator.js"></script>
-
+	<link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
 </head>
 <body>
+
+<!-- header -->
 <header>
-	<!-- 导航栏 -->
-	<!-- <nav>
-		<ul>
-			<li><a href="#">初始化</a></li>
-			<li><a href="#">演示结果</a></li>
-			<li><a href="#">结果分析</a></li>
-			<li><a href="#">关于</a></li>
-		</ul>
-	</nav> -->
 	<img src="./assets/images/bank.png">
 	<h1>银行排队模拟演示系统</h1>
 </header>
 
+<!-- main -->
 <div id="main">
 	<div id="titleZone">
 		<div class="titleItem">初始化设定</div>
 		<div class="titleItem">排队演示</div>
 		<div class="titleItem">结果分析</div>
 	</div>
-
+	
+	<!-- wrapper -->
 	<div id="wrapper">
 		<!-- 初始化设置 -->
 		<div id="settings">
@@ -105,26 +74,30 @@
 			</div>
 		</div>
 
-		<!-- <div style="clear: both"></div> -->
-
-		<!-- <h2>Results</h2> -->
-
 		<!-- 演示结果 -->
 		<div id="results">
 		</div>
-		<!-- <h2>Summary</h2> -->
 		<div id="summary">
 		</div>
-
 	</div>
 </div>
 
+<!-- footer -->
 <footer>
 	<p>2017 &copy; WANGBIN</p>
 </footer>
 
+<!-- lib -->
+<script type="text/javascript" src="./assets/lib/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="./assets/lib/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./assets/lib/phpjs/explode.js"></script>
+<script type="text/javascript" src="./assets/lib/phpjs/str_replace.js"></script>
 
-	<script type="text/javascript" src="./assets/scripts/main.js"></script>
+<!-- scripts -->
+<script type="text/javascript" src="./assets/scripts/Queue.js"></script>
+<script type="text/javascript" src="./assets/scripts/RenderEngine.js"></script>
+<script type="text/javascript" src="./assets/scripts/BankSimulator.js"></script>
+<script type="text/javascript" src="./assets/scripts/main.js"></script>
 
 </body>
 </html>
