@@ -16,17 +16,17 @@
 * **点击开始模拟演示按钮**：系统开始模拟顾客排队接受服务过程
 
 #### **1. 打开主界面**
-![main.png](./assets/images/main.png "")
+![main.png](./assets/images/main.PNG "")
 
 #### **2. 初始化设定**
-![left.png](./assets/images/left.png "")
+![left.png](./assets/images/left.PNG "")
 
 #### 3. **显示银行模拟排队过程**
-![middle.png](./assets/images/middle.png "")
+![middle.png](./assets/images/middle.PNG "")
 
 #### 4. **显示排队结果分析**
 
-![right.png](./assets/images/right.png "")
+![right.png](./assets/images/right.PNG "")
 
 ### **目录描述**
 |文件名                      | 描述                             |
