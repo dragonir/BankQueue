@@ -6,7 +6,7 @@
 > ### [BankQueue]( https://dragonir.github.io/BankQueue/ "")
 
 ### **使用方法**
-#### **推荐使用浏览器**： **Chrome** ![arrow.png](./assets/images/chrome.png "") **Firefox** ![arrow.png](./assets/images/firefox.png "") **Opera** ![arrow.png](./assets/images/opera.png "") **Microsoft Edge** ![arrow.png](./assets/images/edge.png "")
+#### **推荐使用浏览器**： **Chrome** ![chrome.png](./assets/images/chrome.png "") **Firefox** ![firefox.png](./assets/images/firefox.png "") **Opera** ![opera.png](./assets/images/opera.png "") **Microsoft Edge** ![edge.png](./assets/images/edge.png "")
 
 > #### **使用步骤**
 * **设置服务持续时间**：   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;表示银行的营业时间
@@ -16,17 +16,17 @@
 * **点击开始模拟演示按钮**：系统开始模拟顾客排队接受服务过程
 
 #### **1. 打开主界面**
-![arrow.png](./assets/images/main.png "")
+![main.png](./assets/images/main.png "")
 
 #### **2. 初始化设定**
-![arrow.png](./assets/images/left.png "")
+![left.png](./assets/images/left.png "")
 
 #### 3. **显示银行模拟排队过程**
-![arrow.png](./assets/images/middle.png "")
+![middle.png](./assets/images/middle.png "")
 
 #### 4. **显示排队结果分析**
 
-![arrow.png](./assets/images/right.png "")
+![right.png](./assets/images/right.png "")
 
 ### **目录描述**
 |文件名                      | 描述                             |
