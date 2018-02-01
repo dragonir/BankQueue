@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>动画演示</title>
+	<meta charset="utf-8">
+	<style type="text/css">
+		.tel{
+			background-color: #03c03c;
+			height: 30px;
+			width: 30px;
+			margin: 10px;
+			border: 1px solid red;
+		}
+	</style>
+</head>
+<body>
+
+<div id="animateClock">
+	<span id="animateSpan"></span>
+	请输入时间<input type="text" name="" id="animateTxt">
+	<button id="animateBtn">时钟</button>
+</div>
+<div id="animateTeller">
+	请输入服务台个数：<input type="text" name="" value="" id="tellerNum">
+	<button id="tellerBtn">创建服务台</button>
+</div>
+
+<script type="text/javascript">
+	var span = document.getElementById("animateSpan");		// 显示区
+	var btn = document.getElementById("animateBtn");				// 按钮
+	var num = 0;												// 时钟初始值
+	btn.addEventListener("click", animate, false);				// 事件函数
+	// 时钟增加
+	function increaseNum(){
+		var max = document.getElementById("animateTxt").value;
+		span.innerHTML = num;
+		num++;
+		if(num <= max){
+			setTimeout(increaseNum, 500);
+		}
+	}
+	// 模拟函数
+	function animate(){
+		setTimeout(increaseNum, 500);
+	}
+
+
+	// teller
+	var tellerBtn = document.getElementById("tellerBtn");
+	var teller = document.getElementById("animateTeller");
+	var tel = "<span class='tel'>TEL</span>";
+
+	tellerBtn.addEventListener("click", function(){
+		var tellerNum = document.getElementById("tellerNum").value;
+		console.log(tellerNum);
+		for(var i = 0; i < tellerNum; i++){
+			var tel = document.createElement("span");
+			tel.setAttribute("class", "tel");
+			var txt = document.createTextNode("TEL: " + i);
+			tel.appendChild(txt);
+			teller.appendChild(tel);
+
+		}
+	},false);
+
+</script>
+</body>
+</html>

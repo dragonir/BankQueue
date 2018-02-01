@@ -13,9 +13,12 @@
 				}
 			}
 			else{
+				animateClock();						// 动画时钟
+				// createTellers();					// 创建服务台
+				animateTeller();
 				start_simulate();
-				// 产生模拟结果
-				jQuery("#summary").html(collect_summary());
+				jQuery("#summary").html(collect_summary());			// 显示模拟结果
+				
 			}
 		});
 	});
