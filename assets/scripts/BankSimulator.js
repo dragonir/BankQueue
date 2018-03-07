@@ -16,6 +16,9 @@
 				animateClock();						// 动画时钟
 				// createTellers();					// 创建服务台
 				animateTeller();
+				
+				animateCustomerQueue();
+
 				start_simulate();
 				jQuery("#summary").html(collect_summary());			// 显示模拟结果
 				
@@ -126,7 +129,6 @@ CustomerState = {
 // 枚举系统的状态
 SystemStateLog = [];
 SystemStateLogTypes = {
-
 	// 顾客
 	"Customer": {
 		//新顾客进入
@@ -571,8 +573,10 @@ function start_simulate(){
 	// 模拟结束
 	SystemState_log(SystemStateLogTypes.SimulationEngine.Finish, "模拟演示结束");
 	RenderingEngine.render(SystemStateLog);
-
+	// 显示结果
 	jQuery("#results").html(RenderingEngine.getRenderedOutput());
+	jQuery("#animateCustomerQueue").html(RenderingEngine.getRenderedOutput());
+
 }
 
 
