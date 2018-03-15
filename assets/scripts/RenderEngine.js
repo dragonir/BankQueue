@@ -21,7 +21,7 @@ RenderingEngine = {
 
 				// 如果时钟变化，插入一行
 				if(clockChanged){
-					RenderingEngine.appendItem("时钟: " + clock, "clock_changed");
+					RenderingEngine.appendItem("CLOCK: " + clock, "clock_changed");
 				}
 
 				switch(type){
@@ -88,12 +88,12 @@ RenderingEngine = {
 
 	// 调用一个队列结构
 	"renderQueue": function(queue){
-		var res = "";
+		var result = "";
 		// 检查队列是否为空
 		if(!queue.isEmpty()){
 			result = "<ol>";
 			var queue_all = queue.getAll();
-			for(var i = 0; i < queue_all.length - 1; i++){
+			for(var i = 0; i <= queue_all.length - 1; i++){
 				var customer = queue_all[i];
 				var customerid = customer.customerid;
 				var enterTime = customer.enterTime;
@@ -113,7 +113,7 @@ RenderingEngine = {
 			result += "</ol>";
 		}
 		else{
-			result += "<p>顾客队列为空</p>";
+			result += "<p>空</p>";
 		}
 		return result;
 	},

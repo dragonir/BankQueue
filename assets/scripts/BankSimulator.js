@@ -13,14 +13,15 @@
 				}
 			}
 			else{
-				animateClock();						// 动画时钟
+				// animateClock();						// 动画时钟
 				// createTellers();					// 创建服务台
-				animateTeller();
+				// animateTeller();
 				
-				animateCustomerQueue();
+				// animateCustomerQueue();
 
 				start_simulate();
 				jQuery("#summary").html(collect_summary());			// 显示模拟结果
+				scrollAnimate();
 				
 			}
 		});

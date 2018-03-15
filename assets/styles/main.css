@@ -5,6 +5,7 @@
 html, body{
 	height: 100%;
 	font-family: "微软雅黑" Arial;
+	background-color: #f5f5f5;
 }
 @font-face{
 	font-family: "digital";
@@ -17,28 +18,42 @@ html, body{
 	font-family: "digital2";
 	src: url('../fonts/Digital Dismay.otf');
 }
-
+@font-face{
+	font-family: "dor";
+	src: url('../fonts/dor.ttf');
+}
 /*header*/
 header{
 	width: 100%;
 	height: 45px;
-	background-color: #2d2d2d;
+	background-color: #fff;
 	margin: 0 auto;
+	box-sizing: border-box;	
+	box-shadow: 1px 1px 1px #2d2d2d;
 } 
 header h1{
-	color: #EEE;
+	display: block;
+	height: 100%;
+	color: #000;
 	font-size: 25px;
 	line-height: 45px;
-	float: right;
-	margin-right: 50px;
+	float: left;
+	margin-left: 5%;
 	-webkit-transition: all .5s ease-in-out;
 	   -moz-transition: all .5s ease-in-out;
 	    -ms-transition: all .5s ease-in-out;
 	     -o-transition: all .5s ease-in-out;
 	        transition: all .5s ease-in-out;
+	box-sizing: border-box;
+}
+header h1 span{
+	font-size: 20px;
+	color: silver;
+	font-family: "dor";
+	margin-left: 20px;
 }
 header:hover h1{
-	color: #fff;
+	color: #000;
 }
 header:hover img{
 	-webkit-transform: rotate(360deg);
@@ -51,6 +66,7 @@ header img{
 	height: 35px;
 	width: 35px;
 	margin: 5px;
+	float: left;
 	-webkit-transition: all .5s ease-in-out;
 	   -moz-transition: all .5s ease-in-out;
 	    -ms-transition: all .5s ease-in-out;
@@ -58,33 +74,53 @@ header img{
 	        transition: all .5s ease-in-out;
 }
 
+/* 导航栏按钮 */
+header ul{
+	height: 45px;
+	float: right;
+	margin-right: 20px;
+	box-sizing: border-box;
+}
+header ul li{
+	height: 100%;
+	float: left;
+	list-style: none;
+	margin-left: 10px;
+	box-sizing: border-box;
+}
+header ul li a{
+	text-decoration: none;
+	color: #2d2d2d;
+	line-height: 45px;
+}
+header ul li a:hover{
+	color: #ffcc00;
+}
 
 
 /*main*/ 
 #main{
 	margin: 0 auto;
+	box-sizing: border-box;
 }
-#wrapper{
-	margin: auto;
-	width: 90%;
-	// height: calc(100% -200px);
-	display: flex;
-	justify-content: space-between;
-	border: 2px solid #ccc;
-	box-sizing: border-box;;
-}
+
+/* 文字栏 */
 #titleZone{
 	width: 90%;
-	height: 25px;
-	margin: auto;
+	height: 30px;
+	line-height: 30px;
+	margin: 0 auto;
 	display: flex;
 	justify-content: space-between;
-	background-color: #66cc33;
-	color: #000;
+	font-size: 15px;
+	color: #2d2d2d;
 	text-align: center;
+	background: #ffcc00;
+	box-sizing: border-box;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
 	font-weight: bold;
 }
-#titleZone .titleItem{}
 #titleZone .titleItem:nth-child(1){
 	width: 20%;
 }
@@ -95,46 +131,53 @@ header img{
 	width: 35%;
 }
 
+/* wrapper */
+#wrapper{
+	margin: auto;
+	width: 90%;
+	display: flex;
+	justify-content: space-between;
+	box-sizing: border-box;
+	border-left: 1px solid #ccc;
+	border-right: 1px solid #ccc;
+}
 #settings{
 	width: 20%;
 	height: 100%;
 	box-sizing: border-box;
-	padding: 5px;
-	background-color: #ccc;
-}
-#settings #duration{
-	
+	padding: 10px;
+	background: linear-gradient(to bottom right,#bdb29e, #897761, #bdb29e);
 }
 #settings #duration:focus{
-	
+	outline: 1px solid #ffcc00;
 }
 #settings #arrivaltable{
 	height: 280px;
 	width: 100%;
 	outline: none;
 	border: none;
-	background-color: #333;
-	color: red;
+	color: #ffcc00;
 	font-size: 25px;
 	font-family: digital2;
 	font-style: normal;
+	background: #2d2d2d;
+	box-sizing: border-box;
+	padding: 3px;
+	text-shadow: 1px 1px 1px black;
 }
-#settings #generaterandom{}
-#settings #responsetimeave{}
-#settings #tellerscount{}
 .input{
 	width: 25px;
 	height: 25px;
 	outline: none;
 	text-align: center;
-	color: red;
+	color: #2d2d2d;
 	font-weight: bold;
 	line-height: 25px;
 	border: 1px solid #aaa;
 	border-radius: 3px;
 }
 .input:focus{
-	outline: 2px solid #66cc33;
+	outline: 2px solid #ffcc00;
 }
 
 /* 模拟演示按钮 */
@@ -147,13 +190,57 @@ header img{
 #resultsZone{
 	width: 45%;
 	height: 100%;
+	/* border-left: 2px solid #897761; */
 }
+/* 动画控制区 */
+#resultsControl{
+	height: 55px;
+	width: 100%;
+	background: linear-gradient(to right, #bcbd91, #897761, #bcbd91);
+}
+#btns{
+	width: 300px;
+	margin: auto;
+	display: flex;
+	justify-content: space-between;
+	position: relative;
+	top: 13px;
+}
+.btn2{
+	height: 30px;
+	width: 120px;
+	outline: none;
+	border: none;
+	border-radius: 20px;
+	background-color: #ffcc00;
+	color: #000;
+	cursor: pointer;
+	box-shadow: 1px 1px 1px #2d2d2d;
+}
+.btn2:hover{
+	background-color: #fffc00;
+}
+
+/* results */
 #results{
 	width: 100%;
-	height: 60%;
+	height: calc(100% - 55px);
 	overflow-y: scroll;
 	padding: 5px;
 	box-sizing: border-box;
+	position: relative;
+}
+#results ul{
+	position: absolute;
+	width: 100%;
+	left: 0;
+	padding: 5px;
+	box-sizing: border-box;
+	color: #000;
+}
+/* 服务员空闲列表 */
+#results ul li ul{
+	position: static;
 }
 
 /* style for log data*/ 
@@ -163,127 +250,105 @@ header img{
 .label:after{
 	content: ": ";
 }
-.value{}
-li{
-	padding: 5px 0;
-	margin: 5px 0;
-}
+
 ul.inline-ul{
 	padding: 0;
 }
+
 /* 顾客队列列表 */ 
 ul.inline-ul li{
 	display: inline;
 	list-style-type: none;
-	border: 1px solid #999;
+	border: 1px solid #757575;
 	padding: 0 5px;
+	border-radius: 0;
 }
+#results li{
+	padding: 5px 50px 5px 50px;
+	margin: 5px 0;
+	border-radius: 5px;
+	list-style-type: none;
+	background-size: 30px;
+	cursor: pointer;
+}
+
 
 /* CLOCK样式 */ 
 li.clock_changed{
-	border: 1px solid #ccc;
-	color: #ff0000;
-	font-family: verdana, sans-serif;
+	margin: 15px auto !important;
+	height: 35px;
+	color: #fff;
 	font-weight: bold;
-	font-size: 18px;
-	list-style-type: none;
-	margin: 15px 0;
-	padding: 15px;
+	font-size: 25px;
+	line-height: 35px;
 	text-align: center;
-	background: #2d2d2d url("../images/clock.png") no-repeat left center;
-	background-size: 45px;
+	background: #f44336 url("../images/clock.png") no-repeat left center;
+	background-size: 35px !important;
+	text-shadow: 1px 1px 1px #2d2d2d, 2px 2px 2px #2d2d2d, 3px 3px 3px #2d2d2d;
+	border-radius: 0 !important;
 }
-
-/*顾客进入*/ 
+/*顾客进入银行*/ 
 li.customer_enter{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: #dcfeda url("../images/customer.png") no-repeat left center;
-	background-size: 45px;
+	background: #ffccbc url("../images/customer.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /*顾客得到服务*/ 
 li.customer_getservice{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: #66cc33 url("../images/customer.png") no-repeat left center;
-	background-size: 45px;
+	background: #ffccbc url("../images/customer.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /* 顾客离开银行 */ 
 li.customer_exit{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: #710909 url("../images/customer.png") no-repeat left center;
-	background-size: 45px;
+	background: #ffccbc url("../images/customer.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /* 产生工作人员 */ 
 li.tellermanager_create_teller{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: url("../images/tellermanager.png") no-repeat left center;
-	background-size: 45px;
+	background: #9ccc65 url("../images/tellermanager.png") no-repeat left center;
+	background-size: 35px;
+	box-shadow: 1px 1px 3px #2d2d2d;
 }
-
-/* 叫号器 */ 
+/* 叫号器呼叫新用户 */ 
 li.tellermanager_increase{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: url("../images/speaker.png") no-repeat left center;
-	background-size: 45px;
+	background: #b3e5fc url("../images/speaker.png") no-repeat left center;
+	box-shadow: 1px 1px 3px #2d2d2d;
 }
-
-/*  */ 
+/* 空闲服务员列表 */ 
 li.tellermanager_listfree{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: url("../images/tellermanager.png") no-repeat left center;
-	background-size: 45px;
+	background: #e1bee7 url("../images/teller.png") no-repeat left center;
+	margin-bottom: 5px;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /* 服务员状态忙碌 */ 
 li.teller_state_busy{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: #d33682 url("../images/teller.png") no-repeat left center;
-	background-size: 45px;
+	background: #e1bee7 url("../images/teller.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /* 服务员空闲状态 */ 
 li.teller_state_free{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: #8ae234 url("../images/teller.png") no-repeat left center;
-	background-size: 45px;
+	background: #e1bee7 url("../images/teller.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /* 队列样式 */ 
 li.queue_log{
-	list-style-type: none;
-	padding: 15px 0 15px 100px;
-	background: #e0f2be url("../images/queue.png") no-repeat left center;
-	background-size: 45px;
+	background: #fff176 url("../images/queue.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
+	margin: 15px auto !important;
 }
-
 /* 发号器产生新号码 */ 
 li.numberingmachine_increase{
-	list-style-type: none;
-	padding: 15px 0 15px 45px;
-	background: url("../images/numberingmachine.png") no-repeat left center;
-	background-size: 45px;
+	background: #b3e5fc url("../images/numberingmachine.png") no-repeat left center;
+	box-shadow: 1px 1px 5px #2d2d2d;
 }
-
 /* 开始模拟 */ 
 li.simulation_start{
-	background-color: #03c03c;
 	text-align: center;
+	font-weight: bold;
 }
-
 /* 结束模拟 */ 
 li.simulation_finish{
-	background-color: #03c03c;
 	text-align: center;
+	font-weight: bold;
 }
 
 /* 模拟打印 */
@@ -296,70 +361,122 @@ li.simulation_log{
 #summary{
 	width: 35%;
 	height: 100%;
-	overflow-Y: scroll;
+	overflow-y: scroll;
 	padding: 5px;
-	box-sizing: border-box;;
+	box-sizing: border-box;
 }
-
+/*  表格样式 */
 #summary table{
-	margin: 10px 30px 20px 30px;
+	width: 95%;
+	margin: 20px auto;
+	text-align: center;
+	border-spacing: 0;
+	color: #f1f1f1;
+	box-shadow: 1px 1px 5px #2d2d2d;
+	border-radius: 10px;
 }
-#summary table tr{
-	border-bottom: 1px solid green;
+/* 表头样式 */
+#summary table tr:first-child{
+	background: linear-gradient(to right, #9dd72b, #87c443, #9dd72b);
+	color: #2d2d2d;
 }
-#summary table th{
-	border: 1px solid #000;
+/* 圆角 */
+#summary table tr:first-child th:first-child{
+	border-top-left-radius: 10px;
+}
+#summary table tr:first-child th:last-child{
+	border-top-right-radius: 10px;
+}
+/* 表格斑马条纹 */
+#summary table tr:nth-of-type(even){
+	background-color: #010101;
+}
+#summary table tr:nth-of-type(odd){
+	background-color: #404040;
+}
+#summary table th, #summary table td{
 	padding: 5px;
 }
-#summary table td{
-	padding: 5px;
-	border: 1px solid #ccc;
+/* table hover样式 */
+#summary table tr:hover{
+	background: #ffcc00;
+	color: #2d2d2d;
+	cursor: pointer;
 }
 
 
-/* footer */ 
+/* 文字总结 */
+#summary ul{
+	width: 95%;
+	margin: 10px auto;
+	background: linear-gradient(to right bottom,  #bdbdbd, #fafafa,  #bdbdbd);
+	color: #2d2d2d;
+	line-height: 1.5em;
+	box-shadow: 1px 1px 2px #2d2d2d;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 10px;
+}
+#summary ul li{
+	list-style: none;
+	padding: 10px 5px;
+}
+
+
+/* footer 页脚 */ 
 footer{
 	height: 35px;
 	width: 100%;
 	clear: both;
-	background-color: #2d2d2d;
+	background-color: #fff;
+	box-shadow: -1px 0 3px #2d2d2d;
+	box-sizing: border-box;
 }
 footer p{
-	font-size: 10px;
+	font-size: 12px;
 	line-height: 35px;
-	color: #fff;
+	color: #000;
+	font-family: sans-serif;
+	font-weight: bold;
 	text-align: center;
+}
+footer p a{
+	text-decoration: none;
 }
 
 
 /*按钮样式*/
 .btn{
 	width: 150px;
-	height: 30px;
-	background-color: #66cc33;
+	height: 35px;
+	background-color: #ffcc00;
 	font-size: 15px;
-	line-height: 30px;
+	line-height: 35px;
 	text-align: center;
-	color: #2d2d2d;
-	font-weight: bold;
+	color: #000;
 	border: none;
 	outline: none;
-	border-radius: 3px;
-	// text-shadow: 1px 1px #2d2d2d, 2px 2px #2d2d2d;
-	box-shadow: 2px 2px 5px #2d2d2d;
+	border-radius: 15px;
+	box-shadow: 1px 1px 3px #a5a5a5;
 	-webkit-transition: all .25s ease-in;
 	   -moz-transition: all .25s ease-in;
 	    -ms-transition: all .25s ease-in;
 	     -o-transition: all .25s ease-in;
 	        transition: all .25s ease-in;
-	// position: absolute;
 	display: block;
 	margin: 10px auto;
+	box-shadow: 1px 1px 1px #2d2d2d;
 }
 .btn:hover{
 	cursor: pointer;
 	color: #000;
-	background-color: #66cc66;
-	box-shadow: 2px 2px 2px #2d2d2d;
+	background-color: #fffc00;
+	box-shadow: 1px 1px 3px #2d2d2d;
+}
 
+
+/* font-awesome */
+i{
+	margin: 5px 5px 5px 0;
+	color: #2d2d2d;
 }

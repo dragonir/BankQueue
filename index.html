@@ -7,15 +7,22 @@
 	<link rel="shortcut icon" href="./assets/images/bank.ico">
 	<!-- 外部样式表 -->
 	<link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
-	<link rel="stylesheet" type="text/css" href="./assets/styles/animate.css">
-
+	<link rel="stylesheet" type="text/css" href="./assets/styles/tips.css">
+	<link rel="stylesheet" type="text/css" href="./assets/styles/about.css">
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="./assets/lib/font-awesome/css/font-awesome.min.css">
 </head>
 <body>
 
 <!-- header -->
 <header>
 	<img src="./assets/images/bank.png">
-	<h1>银行排队模拟演示系统</h1>
+	<h1>银行排队演示系统 <span>Bank Queuing Simulation System</span></h1>
+	<ul>
+		<li><a href="index.html">首页</a></li>
+		<li><a href="#" id="a_tips">使用方法</a></li>
+		<li><a href="#" id="a_about">关于</a></li>
+	</ul>
 </header>
 
 <!-- main -->
@@ -60,7 +67,7 @@
 47
 53</textarea>
 				<br>
-				<button id="generaterandom" class="btn">产生随机数据</button>
+				<button id="generaterandom" class="btn"><i class="fa fa-refresh fa-lg fa-spin"></i>产生随机数据</button>
 				<br>
 			</div>
 
@@ -72,7 +79,7 @@
 				<input class="input" type="text" name="tellerscount" id="tellerscount" value="3"> 个
 				<br>
 				<br>
-				<button id="startsimulate" class="btn">开始模拟演示</button>
+				<button id="startsimulate" class="btn"><i class="fa fa-play-circle fa-lg"></i>开始模拟演示</button>
 			</div>
 		</div>
 
@@ -80,7 +87,7 @@
 		<div id="resultsZone">
 			
 			<!-- 动画显示区 -->
-			<div id="animate">
+			<!-- <div id="animate">
 				<div id="animateClock">
 					时钟：
 					<span id="animateSpan"></span>
@@ -94,31 +101,90 @@
 				<div id="animateCustomerQueue">
 					顾客队列：
 				</div>
+			</div> -->
+			
+			<!-- 动画控制区 -->
+			<div id="resultsControl">
+				<div id="btns">
+					<button id="btnUp" class="btn2"><i class="fa fa-arrow-circle-down fa-lg"></i>向下滚动</button>
+					<button id="btnDown" class="btn2"><i class="fa fa-arrow-circle-up fa-lg"></i>向上滚动</button>
+				</div>
 			</div>
 
 			<!-- 数据显示区 -->
 			<div id="results"></div>
 		</div>
+		
 		<div id="summary">
 		</div>
 	</div>
 </div>
 
+
 <!-- footer -->
 <footer>
-	<p>2017 &copy; WANGBIN</p>
+	<p>2017 &copy; <a href="#" title="GitHub">WANGBIN</a></p>
 </footer>
+
+
+<!-- tips 使用方法 -->
+<div id="tips">
+	<div id="tips_back"></div>
+	<div id="tips_setting" class="tip">
+		<img src="./assets/images/arrow_setting.png">
+		<p>在该区域输入系统设定数值</p>
+	</div>
+	<div id="tips_animate" class="tip">
+		<img src="./assets/images/arrow_animate.png">
+		<p>该区域显示银行排队模拟过程</p>
+	</div>
+	<div id="tips_result" class="tip">
+		<p>该区域显示排队结果分析</p>
+		<img src="./assets/images/arrow_result.png">
+	</div>
+</div>
+
+
+<!-- about -->
+<div id="about">
+	<div id="about_container">
+		<div id="about_profile">
+			<img src="./assets/images/profile.jpg">
+		</div>
+		<div id="about_info">
+			<h3>WANGBIN</h3>
+			<p>Sun Yat'Sen University</p>
+			<p>School Of Data And Computer Science</p>
+		</div>
+		<div id="about_links">
+			<a href="#">
+				<img src="./assets/images/github.png" alt="GitHub" title="GitHub">
+			</a>
+			<a href="#">
+				<img src="./assets/images/segmentFault.png" alt="segmentfault" title="segmentFault">
+			</a>
+			<a href="#">
+				<img src="./assets/images/codepen.png" alt="codepen" title="codePen">
+			</a>
+			<a href="#">
+				<img src="./assets/images/cnblog.png" alt="blog" title="cnblog">
+			</a>
+		</div>
+	</div>
+</div>
+
 
 <!-- lib -->
 <script type="text/javascript" src="./assets/lib/jquery-2.0.3.min.js"></script>
 <script type="text/javascript" src="./assets/lib/jquery-ui.min.js"></script>
 <script type="text/javascript" src="./assets/lib/phpjs/explode.js"></script>
 <script type="text/javascript" src="./assets/lib/phpjs/str_replace.js"></script>
+<script type="text/javascript" src="./assets/scripts/EventUtil.js"></script>
 
 <!-- scripts -->
 <script type="text/javascript" src="./assets/scripts/Queue.js"></script>
 <script type="text/javascript" src="./assets/scripts/RenderEngine.js"></script>
-<script type="text/javascript" src="./assets/scripts/RenderEngine2.js"></script>
+<!-- <script type="text/javascript" src="./assets/scripts/RenderEngine2.js"></script> -->
 
 <script type="text/javascript" src="./assets/scripts/BankSimulator.js"></script>
 <script type="text/javascript" src="./assets/scripts/main.js"></script>
