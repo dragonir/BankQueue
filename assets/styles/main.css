@@ -338,7 +338,7 @@ li.queue_log{
 	background: #fff176 url("../images/queue.png") no-repeat left center;
 	box-shadow: 1px 1px 5px #2d2d2d;
 	margin: 15px auto !important;
-	width: 100%;
+	width: calc(100% - 100px);
 }
 li.queue_log ul{
 	width: 100%;
