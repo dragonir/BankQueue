@@ -241,6 +241,10 @@ header ul li a:hover{
 /* 服务员空闲列表 */
 #results ul li ul{
 	position: static;
+	padding-left: 0;
+}
+#results ul li ul li{
+	padding: 0 5px;
 }
 
 /* style for log data*/ 
@@ -334,6 +338,11 @@ li.queue_log{
 	background: #fff176 url("../images/queue.png") no-repeat left center;
 	box-shadow: 1px 1px 5px #2d2d2d;
 	margin: 15px auto !important;
+	width: 100%;
+}
+li.queue_log ul{
+	width: 100%;
+	margin-left: -45px;
 }
 /* 发号器产生新号码 */ 
 li.numberingmachine_increase{
