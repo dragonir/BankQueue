@@ -13,15 +13,9 @@
 				}
 			}
 			else{
-				// animateClock();						// 动画时钟
-				// createTellers();					// 创建服务台
-				// animateTeller();
-				
-				// animateCustomerQueue();
-
-				start_simulate();
+				start_simulate();									// 开始演示
 				jQuery("#summary").html(collect_summary());			// 显示模拟结果
-				scrollAnimate();
+				scrollAnimate();									// 动画
 				
 			}
 		});
