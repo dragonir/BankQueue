@@ -1,3 +1,8 @@
+// 使用提示
+window.onload = function(){
+	alert("为了最佳显示效果，请在全屏环境下使用系统！")
+}
+
 // 设置wrapper的高度，使之自适应浏览器高度
 var wrapper = document.getElementById("wrapper");
 var H = document.body.offsetHeight - 110;
