@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>银行排队系统演示系统</title>
+	<!-- 字符集 -->
+	<meta charset="utf-8">
+	<!-- 描述 -->
+	<meta name="keywords" content="Queuing System, Queue, Bank, 银行排队系统演示系统, 排队论">
+	<meta name="decription" content="银行排队系统演示系统">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<!-- 图标 -->
+	<link rel="shortcut icon" href="./assets/images/bank.ico">
+	<!-- 外部样式表 -->
+	<link rel="stylesheet" type="text/css" href="./assets/styles/main.css">
+	<link rel="stylesheet" type="text/css" href="./assets/styles/tips.css">
+	<link rel="stylesheet" type="text/css" href="./assets/styles/about.css">
+	<!-- font-awesome -->
+	<link rel="stylesheet" type="text/css" href="./assets/lib/font-awesome/css/font-awesome.min.css">
+</head>
+<body>
+
+<!-- header -->
+<header>
+	<img src="./assets/images/bank.png">
+	<h1>银行排队演示系统 <span>Bank Queuing Simulation System</span></h1>
+	<ul>
+		<li><a href="./home.html">首页</a></li>
+		<li><a href="#" id="a_tips">使用方法</a></li>
+		<li><a href="#" id="a_about">关于</a></li>
+	</ul>
+</header>
+
+<!-- main -->
+<div id="main">
+	<div id="titleZone">
+		<div class="titleItem">系统设定</div>
+		<div class="titleItem">排队演示</div>
+		<div class="titleItem">结果分析</div>
+	</div>
+	
+	<!-- wrapper -->
+	<div id="wrapper">
+		<!-- 初始化设置 -->
+		<div id="settings">
+			<div class="settings-left">
+				<label for="duration">请设置持续时间: </label>
+				<input class="input" type="text" name="duration" id="duration" value="60"> 分钟
+				<br>
+				<label for="arrivaltable">顾客到达时间表：</label>
+				<br>
+				 <textarea id="arrivaltable" name="arrivaltable">5
+7
+8
+9
+10
+11
+15
+17
+19
+25
+26
+27
+28
+29
+36
+37
+38
+39
+40
+41
+45
+47
+53</textarea>
+				<br>
+				<button id="generaterandom" class="btn"><i class="fa fa-refresh fa-lg fa-spin"></i>产生随机数据</button>
+				<br>
+			</div>
+
+			<div class="settings-right">
+				<label for="responsetimeave">平均服务时间</label>
+				<input class="input" type="text" name="responsetimeave" id="responsetimeave" value="5"> 分钟
+				<br>
+				<label for="tellerscount">服务台总数量</label>
+				<input class="input" type="text" name="tellerscount" id="tellerscount" value="3"> 个
+				<br>
+				<br>
+				<button id="startsimulate" class="btn"><i class="fa fa-play-circle fa-lg"></i>开始模拟演示</button>
+			</div>
+		</div>
+
+		<!-- 演示结果 -->
+		<div id="resultsZone">
+			
+			<!-- 动画控制区 -->
+			<div id="resultsControl">
+				<div id="btns">
+					<button id="btnUp" class="btn2"><i class="fa fa-arrow-circle-down fa-lg"></i>向下滚动</button>
+					<button id="btnDown" class="btn2"><i class="fa fa-arrow-circle-up fa-lg"></i>向上滚动</button>
+				</div>
+			</div>
+
+			<!-- 数据显示区 -->
+			<div id="results"></div>
+		</div>
+		
+		<div id="summary">
+		</div>
+	</div>
+</div>
+
+
+<!-- footer -->
+<footer>
+	<p>2017 &copy; <a href="https://github.com/dragonir" title="GitHub">WANGBIN</a></p>
+</footer>
+
+
+<!-- tips 使用方法 -->
+<div id="tips">
+	<div id="tips_back"></div>
+	<div id="tips_setting" class="tip">
+		<img src="./assets/images/arrow_setting.png">
+		<p>在该区域输入系统设定数值</p>
+	</div>
+	<div id="tips_animate" class="tip">
+		<img src="./assets/images/arrow_animate.png">
+		<p>该区域显示银行排队模拟过程</p>
+	</div>
+	<div id="tips_result" class="tip">
+		<p>该区域显示排队结果分析</p>
+		<img src="./assets/images/arrow_result.png">
+	</div>
+</div>
+
+
+<!-- about -->
+<div id="about">
+	<div id="about_container">
+		<div id="about_profile">
+			<img src="./assets/images/profile.jpg">
+		</div>
+		<div id="about_info">
+			<h3>WANGBIN</h3>
+			<p>Sun Yat'Sen University</p>
+			<p>School Of Data And Computer Science</p>
+		</div>
+		<div id="about_links">
+			<a href="https://github.com/dragonir">
+				<img src="./assets/images/github.png" alt="GitHub" title="GitHub">
+			</a>
+			<a href="https://segmentfault.com/u/dragonir">
+				<img src="./assets/images/segmentFault.png" alt="segmentfault" title="segmentFault">
+			</a>
+			<a href="https://codepen.io/dragonir/projects/dashboard/">
+				<img src="./assets/images/codepen.png" alt="codepen" title="codePen">
+			</a>
+			<a href="http://www.cnblogs.com/dragonir/">
+				<img src="./assets/images/cnblog.png" alt="blog" title="cnblog">
+			</a>
+		</div>
+	</div>
+</div>
+
+
+<!-- lib -->
+<script type="text/javascript" src="./assets/lib/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="./assets/lib/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./assets/lib/phpjs/explode.js"></script>
+<script type="text/javascript" src="./assets/lib/phpjs/str_replace.js"></script>
+<script type="text/javascript" src="./assets/scripts/EventUtil.js"></script>
+<!-- scripts -->
+<script type="text/javascript" src="./assets/scripts/Queue.js"></script>
+<script type="text/javascript" src="./assets/scripts/RenderEngine.js"></script>
+<script type="text/javascript" src="./assets/scripts/BankSimulator.js"></script>
+<script type="text/javascript" src="./assets/scripts/main.js"></script>
+<script type="text/javascript" src="./assets/scripts/animate.js"></script>
+</body>
+</html>
