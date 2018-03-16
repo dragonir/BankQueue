@@ -33,10 +33,3 @@ EventUtil.addHandler(a_about, "click", function(){
 	about.style.display = "block";
 	tips.style.display = "none";
 });
-
-
-// 打印
-var a_print = document.getElementById("a_print");
-EventUtil.addHandler(a_print, "click", function(){
-	window.print();
-});
