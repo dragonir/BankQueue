@@ -1,5 +1,5 @@
 RenderingEngine = {
-	// 执行租赁动作的作用
+	// 执行渲染动作
 	"render": function(log){
 		var c1, c2;
 		for(c1 in log){
@@ -9,7 +9,6 @@ RenderingEngine = {
 				var type = item["type"];
 				var clock = item["clock"];
 				var prevClock, clockChanged;
-
 				// 检查时钟是否变化
 				if(prevClock != clock){
 					clockChanged = true;
@@ -18,12 +17,11 @@ RenderingEngine = {
 				else{
 					clockChanged = false;
 				}
-
 				// 如果时钟变化，插入一行
 				if(clockChanged){
 					RenderingEngine.appendItem("CLOCK: " + clock, "clock_changed");
 				}
-
+				// 打印各种类型内容
 				switch(type){
 					case SystemStateLogTypes.Customer.Enter:
 						RenderingEngine.appendItem(message, type);
@@ -72,21 +70,21 @@ RenderingEngine = {
 			}
 		}
 	},
-
+	
 	// 保存临时输出
 	"renderedItems": "",
-
+	
 	// 将新项目添加到临时输出中
 	"appendItem": function(item, htmlclass){
 		this.renderedItems += "\n" + "<li class= '" + htmlclass + "'>" + item + "</li>" + "\n";
 	},
-
-	// 将零时输出包含其中并产生最后结果  
+	
+	// 将临时输出包含其中并产生最后结果  
 	"getRenderedOutput": function(){
 		return "<ul>" + this.renderedItems + "</ul>";
 	},
 
-	// 调用一个队列结构
+	// 渲染客户队列
 	"renderQueue": function(queue){
 		var result = "";
 		// 检查队列是否为空
@@ -118,6 +116,7 @@ RenderingEngine = {
 		return result;
 	},
 
+	// 渲染服务员队列
 	"renderTellerArray": function(tellerArr){
 		var result = "";
 		// 检验服务员队列是否为空

@@ -1,4 +1,4 @@
-// jQuery匿名函数
+// jQuery匿名自欺函数
 (function($){
 	$(document).ready(function(){
 		// 点击产生随机数据按钮，用于产生客户到达时的随机数队列
@@ -37,6 +37,7 @@ logtype = LOGTYPES.console;
 
 // 打印系统对象
 LOG = {
+	// 警告
 	"warn": function(){
 		var msg = jQuery.makeArray(arguments).join("\n");
 		switch(logtype){
@@ -49,7 +50,7 @@ LOG = {
 				break;
 		}
 	},
-
+	// 错误
 	"error": function(){
 		var msg = jQuery.makeArray(arguments).join("\n");
 		switch(logtype){
@@ -62,7 +63,7 @@ LOG = {
 				break;
 		}
 	},
-
+	// 排错
 	"debug": function(){
 		var msg = jQuery.makeArray(arguments).join("\n");
 		switch(logtype){
@@ -75,7 +76,7 @@ LOG = {
 				break;
 		}
 	},
-
+	// 打印
 	"log": function(){
 		var msg = jQuery.makeArray(arguments).join("\n");
 		switch(logtype){
@@ -121,7 +122,7 @@ CustomerState = {
 };
 
 
-// 枚举系统的状态
+// 系统状类型
 SystemStateLog = [];
 SystemStateLogTypes = {
 	// 顾客
@@ -133,8 +134,7 @@ SystemStateLogTypes = {
 		// 顾客得到服务离开		
 		"Exit": "customer_exit"					
 	},
-
-	// 
+	// 服务员管理
 	"TellerManager": {
 		// 系统产生服务人员
 		"CreateTeller": "tellermanager_create_teller",
@@ -143,34 +143,30 @@ SystemStateLogTypes = {
 		// 列举空闲服务人员
 		"ListFreeTellers": "tellermanager_listfree"
 	},
-
-	// 服务人员
+	// 服务员
 	"Teller": {
-		// 状态忙碌
+		// 忙碌状态
 		"StateBusy": "teller_state_busy",
-		// 状态空闲
+		// 空闲状态
 		"StateFree": "teller_state_free"
 	},
-
 	// 顾客队列
 	"Queue": {
 		// 打印顾客队列
 		"Log": "queue_log"
 	},
-
 	// 发号器
 	"NumberingMachine": {
 		// 顾客从发号器获得号码
 		"Increase": "numberingmachine_increase"
 	},
-
 	// 模拟器
 	"SimulationEngine": {
 		// 模拟开始
 		"Start": "simulation_start",
 		// 模拟结束
 		"Finish": "simulation_finish",
-		// 一个新的log entry，它和以前的log和前面新增的数据
+		//打印
 		"Log": "simulation_log"
 	}
 };
@@ -181,8 +177,7 @@ function SystemState_log(type, msg){
 	if(typeof(SystemStateLog[CLOCK]) == "undefined"){
 		SystemStateLog[CLOCK] = [];
 	}
-
-	 //if this is an object, its Queue object. we render it immediately
+	// 如果是一个队列对象，则马上渲染
 	 var newmsg;
 	 if(typeof msg == "object"){
 	 	if(msg.hasOwnProperty("getAll")){
@@ -213,11 +208,10 @@ function getRandomInt(min, max){
 function generateRandomTable(){
 	var table_str = "",
 	prev_time = 0,
-	samp_time = 0,		// temp
+	samp_time = 0,						// temp
 	duration = $("#duration").val(),	// 从输入获得
 	customer_count = getRandomInt(Math.floor(duration / 3), duration),
 	max_time;
-
 	// 产生相邻的随机时间点
 	for(var i=1; i<=customer_count; i++){
 		max_time = prev_time + 5;
@@ -240,21 +234,17 @@ function generateRandomTable(){
 
 // 管理服务人员
 TellerManager = {
-	// @internal
 	"tellers": [],
 	"lastnumber": 0,
-
 	// 产生一个新的服务人员，分配一个ID，push到tellers数组中
 	"createTeller": function(){
 		LOG.debug("called TellerManager.createTeller()");
 		var teller = new Teller(this.tellers.length + 1);
 		this.tellers.push(teller);
-
 		// 打印服务人员
 		SystemState_log(SystemStateLogTypes.TellerManager.CreateTeller, "服务人员就绪");
 		SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员ID: " + teller.tellerid);
 	},
-
 	// 通过ID获取服务人员对象
 	"getTeller": function(tellerid){
 		LOG.debug("called TellerManager.getTeller(" + tellerid + ")");
@@ -265,7 +255,6 @@ TellerManager = {
 			return false;
 		}
 	},
-
 	// 获取所有空闲服务人员数组
 	"getFreeTellers": function(){
 		LOG.debug("called TellerManager.getFreeTellers()");
@@ -277,7 +266,6 @@ TellerManager = {
 		});
 		return result;
 	},
-
 	// 获取等待的到服务的顾客数组
 	"getWaitingNumbers": function(){
 		LOG.debug("called TellerManager.getWaitingNumbers()");
@@ -289,14 +277,13 @@ TellerManager = {
 		});
 		return result;
 	},
-
 	// 检验一个顾客ID是否能立刻得到服务
 	"searchForWaitingCustomer": function(customerid){
 		LOG.debug("called TellerManager.searchForWaitingCustomer(" + customerid + ")");
 		var waitingNumbers = this.getWaitingNumbers();
 		return (waitingNumbers.indexOf(customerid) >= 0);
 	},
-
+	// 增加号码
 	"increaseNumber": function(){
 		LOG.debug("called TellerManager.increaseNumber()");
 		// 打印新增的号码
@@ -307,18 +294,15 @@ TellerManager = {
 };
 
 
-// 发号器（Queue manager）
+// 发号器
 NumberingMachine = {
-	// @inernal
 	"number": 0,
-
 	// 获取号码
 	"getNumber": function(){
 		LOG.debug("called NumberingMachine.getNumber()");
 		return this.number;
 	},
-
-	// 新号码
+	// 增加新号码
 	"increase": function(){
 		LOG.debug("called NumberingMachine.increase()");
 		// 打印新号
@@ -329,78 +313,65 @@ NumberingMachine = {
 };
 
 
-// 构造器
+// 服务员构造器
 function Teller(id){
 	LOG.debug("called new Teller(" + id + ")");
-	this.tellerid = id;		// 由服务人员设置
-
-	//Set number to a new customer, and set state to Free
-	//This simulates a new customer call.
+	this.tellerid = id;		// 设置服务员ID
+	// 给一个新服务员编号，并将状态设置为空闲
+	// 模拟一次用户呼叫服务员
 	this.state = TellerState.Free;
 	this.customerid = TellerManager.increaseNumber();
-
-	// @internal
 	this.lastChangeTime = CLOCK;
 	this.totalFreeTime = 0;
 	this.totalBusyTime = 0;
-
-	// 将服务人员状态设置为忙碌（新顾客被接受）
+	
+	// 将服务人员状态设置为忙碌（新顾客被服务）
 	this.setStateBusy = function(customerid){
 	 	if(this.state == TellerState.Busy){
 	 		LOG.error("Teller is already busy.");
 	 		return false;
 	 	}
-
 	 	// 计算总空闲时间
 	 	this.totalFreeTime += (CLOCK - this.lastChangeTime);
-
 	 	// 更新状态和最后变化时间
 	 	this.lastChangeTime = CLOCK;
 	 	this.state = TellerState.Busy;
 	 	this.customerid = customerid;
-
-	 	// 打印服务人员开始忙碌信息
+	 	// 打印服务员开始忙碌信息
 	 	SystemState_log(SystemStateLogTypes.Teller.StateBusy, "服务人员开始服务");
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员ID: " + this.tellerid);
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "被服务顾客ID: " + customerid);
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "总闲暇时间: " + this.getTotalFreeTime() + " 分钟.");
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "总服务时间: " + this.getTotalBusyTime() + " 分钟.");
-
-	 	// 打印空闲服务人员
+	 	// 打印空闲服务员
 	 	SystemState_log(SystemStateLogTypes.TellerManager.ListFreeTellers, RenderingEngine.renderTellerArray(TellerManager.getFreeTellers()));
-
 	 	return true;
 	};
-
-	// 将服务人员状态设置为空闲（等待下一个顾客）
+	
+	// 将服务员状态设置为空闲（等待下一个顾客）
 	this.setStateFree = function(){
 	 	if(this.state == TellerState.Free){
 	 		LOG.error("Teller is already free.");
 	 		return false;
 	 	}
-
 	 	// 计算总忙碌时间
 	 	this.totalBusyTime += (CLOCK - this.lastChangeTime);
-
 	 	// 更新状态和最后变化时间
 	 	this.lastChangeTime = CLOCK;
 	 	this.state = TellerState.Free;
 	 	this.customerid = TellerManager.increaseNumber();
-
-	 	// 打印服务人员开始空闲信息
+	 	// 打印服务员开始空闲信息
 	 	SystemState_log(SystemStateLogTypes.Teller.StateFree, "服务人员开始空闲。");
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "服务人员ID: " + this.tellerid);
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "现在能接收的顾客ID: " + this.customerid);
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "总空闲时间: " + this.getTotalFreeTime() + " 分钟");
 	 	SystemState_log(SystemStateLogTypes.SimulationEngine.Log, "总忙碌时间: " + this.getTotalBusyTime() + " 分钟");
-
 	 	// 打印空闲服务人员
 	 	SystemState_log(SystemStateLogTypes.TellerManager.ListFreeTellers, RenderingEngine.renderTellerArray(TellerManager.getFreeTellers()));
-
 	 	return true;
 	};
 
-	// 获取服务人员的总空闲时间
+	// 获取服务员的总空闲时间
 	this.getTotalFreeTime = function(){
 	 	var curr = 0;
 	 	if(this.state == TellerState.Free){
@@ -409,7 +380,7 @@ function Teller(id){
 	 	return curr + this.totalFreeTime;
 	};
 
-	// 获取服务人员的总忙碌时间
+	// 获取服务员的总忙碌时间
 	this.getTotalBusyTime = function(){
 	 	var curr = 0;
 	 	if(this.state == TellerState.Busy){
@@ -420,7 +391,7 @@ function Teller(id){
 }
 
 
-// 构造器
+// 银行客户构造器
 function Customer(){
 	this.customerid = NumberingMachine.increase();
 	// 将该客户存储在AllCustomers中用于以后调用
@@ -431,7 +402,7 @@ function Customer(){
 	this.enterTime = CLOCK;
 	this.inServiceTime = null;
 	this.exitTime = null;
-
+	
 	// 设置服务中Inservice的状态
 	this.setStateInService = function(){
 		this.inServiceTime = CLOCK;
@@ -518,7 +489,6 @@ function start_simulate(){
 					LOG.error("Critical: customer is not defined in AllCustomers. customerid=" + teller1.customerid + ", tellerid=" + teller1.tellerid);
 					return;
 				}
-
 				var customer1 = AllCustomers[teller1.customerid];
 				var customer1_inservice_time = CLOCK - customer1.inServiceTime;
 				if(customer1_inservice_time == responsetimeave){
@@ -668,10 +638,8 @@ function collect_summary_overall(){
 		sum_teller_busy += Statistics.tellers[count_teller].TotalBusyTime;
 	}
 	count_teller--;
-
 	average_teller_busy = sum_teller_busy / count_teller;
 	average_teller_free = sum_teller_free / count_teller;
-
 	var result = "<ul>";
 	result += 
 		"<li>顾客平均等待时间: " + average_customer_wait + "</li>" +
@@ -680,4 +648,3 @@ function collect_summary_overall(){
 	result += "</ul>";
 	return result;
 }
-
