@@ -1,0 +1,184 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+body{
+	font-family: "微软雅黑" sans-serif;
+	background-image: url('../images/dot.png');
+	background-repeat: repeat;
+	background-size: 1em;
+}
+@font-face{
+	font-family: "dor";
+	src: url('../fonts/dor.ttf');
+}
+
+
+/* titleZone */
+#titleZone{
+	position: absolute;
+	color: #ffcc00;
+	text-align: left;
+	top: 100px;
+	left: 100px;
+}
+#titleZone h1{
+	font-size: 65px;
+	text-shadow: 1px 1px 5px #2d2d2d;
+}
+#titleZone h3{
+	font-size: 45px;
+	font-family: dor;
+	text-shadow: 1px 1px 5px #2d2d2d;
+}
+
+
+
+#loginZone{
+	height: 85px;
+	width: 300px;
+	box-shadow: 1px 1px #2d2d2d, 2px 2px #2d2d2d, 3px 3px #2d2d2d, 4px 4px #2d2d2d, 5px 5px #2d2d2d, 6px 6px #2d2d2d, 7px 7px 5px #2d2d2d, 8px 8px 5px #2d2d2d, 1px 1px 10px #000;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	background: linear-gradient(to right, #bbbc90, #8a7862, #bbbc90);
+	border-radius: 15px;
+	padding: 10px;
+	line-height: 1.5em;
+}
+label{
+	display: block;
+	margin: 5px auto;
+	padding: 5px 0;
+	text-align: center;
+	width: 85%;
+	background-color: #bbbc90;
+	color: #2d2d2d;
+	border-radius: 10px;
+}
+label span{
+	display: inline-block;
+	height: 15px;
+	width: 15px;
+	background-color: #fff;
+	border-radius: 50%;
+	color: #ffcc00;
+	font-size: 12px;
+	font-weight: bold;
+	line-height: 15px;
+	margin: 5px;
+	cursor: pointer;
+}
+label span:hover{
+	background-color: #ffcc00;
+	color: #fff;
+}
+input:nth-child(1){
+	height: 25px;
+	width: 65%;
+	margin: 0 5px;
+	float: right;
+	font-weight: bold;
+	box-sizing: border-box;
+	outline: none;
+	border:  1px solid #ccc;
+	color: orange;
+	border-radius: 5px;
+	text-indent: 5px;
+}
+input:focus{
+	outline: 2px solid #ffcc00;
+}
+button{
+	height: 35px;
+	width: 150px;
+	display: block;
+	border: none;
+	outline: none;
+	background-color: #ffcc00;
+	margin: 10px auto;
+	border-radius: 15px;
+	color: #2d2d2d;
+	font-size: 15px;
+	-webkit-transition: all .25s ease-in;
+	   -moz-transition: all .25s ease-in;
+	    -ms-transition: all .25s ease-in;
+	     -o-transition: all .25s ease-in;
+	        transition: all .25s ease-in;
+	 cursor: pointer;
+	 box-shadow: 1px 1px 1px #2d2d2d;
+}
+button:hover{
+	background-color: #fffc00;
+	box-shadow: 1px 1px 3px #2d2d2d;
+}
+button i{
+	padding: 5px;
+}
+/* 邀请码提示样式 */
+#qom{
+	width: 130px;
+	height: 65px;
+	background-color: #2d2d2d;
+	position: absolute;
+	top: -210px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	margin: auto;
+	color: #ffcc00;
+	font-size: 15px;
+	line-height: 2em;
+	text-align: center;
+	border-radius: 15px;
+	filter: drop-shadow(1px 1px 5px #2d2d2d);
+	display: none;
+}
+#triangle{
+	width: 0;
+	height: 0;
+	display: block;
+	position: absolute;
+	top: 65px;
+	right: 0;
+	left: 0;
+	margin: auto;
+	border: 10px solid;
+	border-color: transparent;
+	border-top-color: #2d2d2d;
+}
+
+
+/* 背景视频 */
+#bgvid{
+	z-index: -111;
+	overflow: hidden;
+	position: fixed;
+	right: 0px;
+	bottom: 0px;
+	min-width: 100%;
+	min-height: 100%;
+	width: auto;
+	height: auto;
+	background-size: cover;
+	opacity: 0.8;
+}
+
+
+/* 页脚 */
+footer{
+	height: 50px;
+	width: 100%;
+	background-color: #ffcc00;
+	position: fixed;
+	bottom: 0;
+	line-height: 50px;
+	color: #2d2d2d;
+	text-align: center;
+	font-size: 15px;
+	font-family: sans-serif;
+	font-weight: bold;
+}

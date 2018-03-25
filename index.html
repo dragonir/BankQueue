@@ -7,185 +7,45 @@
 	<!-- 描述 -->
 	<meta name="keywords" content="Queuing System, Queue, Bank, 银行排队系统演示系统, 排队论">
 	<meta name="decription" content="银行排队系统演示系统">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 	<!-- 图标 -->
 	<link rel="shortcut icon" href="./assets/images/bank.ico">
 	<link rel="stylesheet" type="text/css" href="./assets/lib/font-awesome/css/font-awesome.min.css">
-	<style type="text/css">
-		*{
-			padding: 0;
-			margin: 0;
-		}
-		body{
-			background-image: url('./assets/images/back.jpg');
-			font-family: "微软雅黑" sans-serif;
-		}
-		#loginZone{
-			height: 85px;
-			width: 300px;
-			box-shadow: 1px 1px #2d2d2d, 2px 2px #2d2d2d, 3px 3px #2d2d2d, 4px 4px #2d2d2d, 5px 5px #2d2d2d, 6px 6px #2d2d2d, 7px 7px 5px #ccc, 8px 8px 5px #ccc, 1px 1px 10px #000;
-			position: absolute;
-			top: 0;
-			bottom: 0;
-			left: 0;
-			right: 0;
-			margin: auto;
-			background: linear-gradient(to right, #bbbc90, #8a7862, #bbbc90);
-			border-radius: 15px;
-			padding: 10px;
-			line-height: 1.5em;
-		}
-		label{
-			display: block;
-			margin: 5px auto;
-			padding: 5px 0;
-			text-align: center;
-			width: 85%;
-			background-color: #bbbc90;
-			color: #2d2d2d;
-			border-radius: 10px;
-		}
-		label span{
-			display: inline-block;
-			height: 15px;
-			width: 15px;
-			background-color: #fff;
-			border-radius: 50%;
-			color: #ffcc00;
-			font-size: 12px;
-			font-weight: bold;
-			line-height: 15px;
-			margin: 5px;
-			cursor: pointer;
-		}
-		label span:hover{
-			background-color: #ffcc00;
-			color: #fff;
-		}
-		input:nth-child(1){
-			height: 25px;
-			width: 65%;
-			margin: 0 5px;
-			float: right;
-			font-weight: bold;
-			box-sizing: border-box;
-			outline: none;
-			border:  1px solid #ccc;
-			color: orange;
-			border-radius: 5px;
-			text-indent: 5px;
-		}
-		input:focus{
-			outline: 2px solid #ffcc00;
-		}
-		button{
-			height: 35px;
-			width: 150px;
-			display: block;
-			border: none;
-			outline: none;
-			background-color: #ffcc00;
-			margin: 10px auto;
-			border-radius: 15px;
-			color: #2d2d2d;
-			font-size: 15px;
-			-webkit-transition: all .25s ease-in;
-			   -moz-transition: all .25s ease-in;
-			    -ms-transition: all .25s ease-in;
-			     -o-transition: all .25s ease-in;
-			        transition: all .25s ease-in;
-			 cursor: pointer;
-			 box-shadow: 1px 1px 1px #2d2d2d;
-		}
-		button:hover{
-			background-color: #fffc00;
-			box-shadow: 1px 1px 3px #2d2d2d;
-		}
-		button i{
-			padding: 5px;
-		}
-		/* 邀请码提示样式 */
-		#qom{
-			width: 130px;
-			height: 65px;
-			background-color: #2d2d2d;
-			position: absolute;
-			top: -210px;
-			bottom: 0;
-			right: 0;
-			left: 0;
-			margin: auto;
-			color: #ffcc00;
-			font-size: 15px;
-			line-height: 2em;
-			text-align: center;
-			border-radius: 15px;
-			opacity: 0.8;
-			filter: drop-shadow(1px 1px 3px #2d2d2d);
-			display: none;
-		}
-		#triangle{
-			width: 0;
-			height: 0;
-			display: block;
-			position: absolute;
-			top: 65px;
-			right: 0;
-			left: 0;
-			margin: auto;
-			border: 10px solid;
-			border-color: transparent;
-			border-top-color: #2d2d2d;
-		}
-	</style>
+	<link rel="stylesheet" type="text/css" href="./assets/styles/index.css">
 </head>
 <body>
+
+<!-- 背景video -->
+<video autoplay="" loop="" id="bgvid">
+    <!-- <source src="./assets/media/video-1.mp4" type="video/mp4"> -->
+    <source src="./assets/media/video-1.webm" type="video/webm">
+</video>
+
+<div id="titleZone">
+	<h1>银行排队演示系统</h1>
+	<h3>Bank Queuing Simulation System</h3>
+</div>
+
+<!-- 登录区 -->
 <div id="loginZone">
 	<label>邀请码<span id="question">?</span><input type="text" name="password" placeholder="请输入6位邀请码"></label>
 	<button onclick="validate()"><i class="fa fa-sign-in fa-lg"></i>登录</button>
 </div>
+
+
 <!-- 邀请码提示 -->
 <div id="qom">
 	<p>请使用邀请码</p>
-	<p>123456</p>
+	<p>"123456"</p>
 	<span id="triangle"></span>
 </div>
-<script type="text/javascript">
-	
-	var password = document.getElementsByTagName("input")[0],
-		btn = document.getElementsByTagName("button")[0];
-	
-	// 按钮事件
-	function validate(){
-		if(password.value == "123456"){
-			window.open("./home.html", "_self");
-		}
-		else{
-			alert("用户名或密码错误！")
-		}
-	}
 
 
-	var question = document.getElementById("question");
-	var qom = document.getElementById("qom");
-	question.addEventListener("mouseover", function(){
-		qom.style.display = "block";
-	}, false);
-	question.addEventListener("mouseout", function(){
-		qom.style.display = "none";
-	}, false);
-
-
-	// enter 事件
-	(function(){
-		password.addEventListener("keydown", function(){
-			if(event.keyCode == 13 && password.value == "123456"){
-				window.open("./home.html", "_self");
-			}
-		}, false)
-	})();
-
-
-</script>
+<!-- footer -->
+<footer>
+	<p>2018 &copy; WANGBIN</p>
+</footer>
+<script type="text/javascript" src="./assets/scripts/index.js"></script>
 </body>
 </html>
