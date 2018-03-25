@@ -148,11 +148,20 @@ header ul li a:hover{
 	padding: 10px;
 	background: linear-gradient(to bottom right,#bdb29e, #897761, #bdb29e);
 }
+#settings .settings-zone{
+	height: 100%;
+	width: 100%;
+	padding: 10px;
+	box-sizing: border-box;
+	border-radius: 20px;
+	overflow-y: hidden;
+	border: 1px solid #908067;
+}
 #settings #duration:focus{
 	outline: 1px solid #ffcc00;
 }
 #settings #arrivaltable{
-	height: 280px;
+	height: 55%;
 	width: 100%;
 	outline: none;
 	border: none;
@@ -174,7 +183,7 @@ header ul li a:hover{
 	font-weight: bold;
 	line-height: 25px;
 	border: 1px solid #aaa;
-	border-radius: 3px;
+	border-radius: 5px;
 }
 .input:focus{
 	outline: 2px solid #ffcc00;
@@ -190,7 +199,6 @@ header ul li a:hover{
 #resultsZone{
 	width: 45%;
 	height: 100%;
-	/* border-left: 2px solid #897761; */
 }
 /* 动画控制区 */
 #resultsControl{
@@ -199,7 +207,7 @@ header ul li a:hover{
 	background: linear-gradient(to right, #bcbd91, #897761, #bcbd91);
 }
 #btns{
-	width: 300px;
+	width: 80%;
 	margin: auto;
 	display: flex;
 	justify-content: space-between;
@@ -208,7 +216,7 @@ header ul li a:hover{
 }
 .btn2{
 	height: 30px;
-	width: 120px;
+	width: 33%;
 	outline: none;
 	border: none;
 	border-radius: 20px;
@@ -457,17 +465,16 @@ footer p a{
 
 /*按钮样式*/
 .btn{
-	width: 150px;
-	height: 35px;
+	width: 75%;
+	height: 30px;
 	background-color: #ffcc00;
 	font-size: 15px;
-	line-height: 35px;
+	line-height: 30px;
 	text-align: center;
 	color: #000;
 	border: none;
 	outline: none;
 	border-radius: 15px;
-	box-shadow: 1px 1px 3px #a5a5a5;
 	-webkit-transition: all .25s ease-in;
 	   -moz-transition: all .25s ease-in;
 	    -ms-transition: all .25s ease-in;
@@ -475,7 +482,8 @@ footer p a{
 	        transition: all .25s ease-in;
 	display: block;
 	margin: 10px auto;
-	box-shadow: 1px 1px 1px #2d2d2d;
+	padding: 0 10px;
+	box-shadow: 1px 1px 2px #2d2d2d;
 }
 .btn:hover{
 	cursor: pointer;

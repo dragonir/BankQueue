@@ -5,8 +5,8 @@
 	<!-- 字符集 -->
 	<meta charset="utf-8">
 	<!-- 描述 -->
-	<meta name="keywords" content="Queuing System, Queue, Bank, 银行排队系统演示系统, 排队论">
-	<meta name="decription" content="银行排队系统演示系统">
+	<meta name="keywords" content="Queuing System, Queue, Bank, 银行排队演示系统, 排队论">
+	<meta name="decription" content="银行排队演示系统">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<!-- 图标 -->
 	<link rel="shortcut icon" href="./assets/images/bank.ico">
@@ -42,7 +42,7 @@
 	<div id="wrapper">
 		<!-- 初始化设置 -->
 		<div id="settings">
-			<div class="settings-left">
+			<div class="settings-zone">
 				<label for="duration">请设置持续时间: </label>
 				<input class="input" type="text" name="duration" id="duration" value="60"> 分钟
 				<br>
@@ -72,11 +72,11 @@
 47
 53</textarea>
 				<br>
-				<button id="generaterandom" class="btn"><i class="fa fa-refresh fa-lg fa-spin"></i>产生随机数据</button>
+				<button id="generaterandom" class="btn"><i class="fa fa-refresh fa-lg fa-spin"></i>产生随机队列</button>
 				<br>
-			</div>
+			<!-- </div>
 
-			<div class="settings-right">
+			<div class="settings-right"> -->
 				<label for="responsetimeave">平均服务时间</label>
 				<input class="input" type="text" name="responsetimeave" id="responsetimeave" value="5"> 分钟
 				<br>
@@ -163,10 +163,11 @@
 
 
 <!-- lib -->
-<script type="text/javascript" src="./assets/lib/jquery-2.0.3.min.js"></script>
-<script type="text/javascript" src="./assets/lib/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./assets/lib/jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="./assets/lib/jquery/jquery-ui.min.js"></script>
 <script type="text/javascript" src="./assets/lib/phpjs/explode.js"></script>
 <script type="text/javascript" src="./assets/lib/phpjs/str_replace.js"></script>
+<script type="text/javascript" src="./assets/lib/html5shiv/html5shiv.js"></script>
 <script type="text/javascript" src="./assets/scripts/EventUtil.js"></script>
 <!-- scripts -->
 <script type="text/javascript" src="./assets/scripts/Queue.js"></script>
