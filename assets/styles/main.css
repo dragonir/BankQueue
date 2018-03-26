@@ -189,11 +189,6 @@ header ul li a:hover{
 	outline: 2px solid #ffcc00;
 }
 
-/* 模拟演示按钮 */
-#settings #startsimulate{}
-.settings-left{}
-.settings-right{}
-
 
 /* 结果显示 */ 
 #resultsZone{
@@ -481,7 +476,7 @@ footer p a{
 	     -o-transition: all .25s ease-in;
 	        transition: all .25s ease-in;
 	display: block;
-	margin: 10px auto;
+	margin: 10px auto 0px;
 	padding: 0 10px;
 	box-shadow: 1px 1px 2px #2d2d2d;
 }
