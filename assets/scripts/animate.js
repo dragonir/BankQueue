@@ -34,6 +34,6 @@ function scrollAnimate(){
 			else if(oUl.offsetTop >= 0){
 				oUl.style.top = - oUl.offsetHeight / 2 + "px";
 			};
-		}, 30);
+		}, 20);
 	};
 }

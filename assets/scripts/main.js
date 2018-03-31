@@ -34,5 +34,5 @@ EventUtil.addHandler(a_about, "click", function(){
 (function(){
 	var t = setTimeout(function(){
 		alert("为了最佳显示效果，请在全屏环境下使用系统！");
-	}, 1000);
+	}, 150);
 })();

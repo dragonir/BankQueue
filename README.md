@@ -2,7 +2,7 @@
 ![bank.png](./assets/images/bank.png "")
 
 ### **演示地址**: 
-![arrow.png](./assets/images/arrow.png "")
+![arrow_result.png](./assets/images/arrow_result.png "")
 > ### [BankQueue]( https://dragonir.github.io/BankQueue/ "")
 
 ### **使用方法**

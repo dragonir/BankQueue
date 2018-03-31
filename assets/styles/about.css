@@ -1,3 +1,4 @@
+@import("./main.css");
 #about{
 	width: 100%;
 	clear: both;
@@ -10,8 +11,8 @@
 
 /* about_container */
 #about_container{
-	height: 350px;
-	width: 300px;
+	height: 320px;
+	width: 250px;
 	position: absolute;
 	left: 0;
 	right: 0;
@@ -20,15 +21,16 @@
 	margin: auto;
 	background: linear-gradient(to bottom right, #bcbd91, #897761, #bcbd91);
 	padding: 20px 10px;
-	box-shadow: 2px 2px 10px #8b7963, -2px -2px 10px #8b7963;
+	box-shadow: 2px 2px 10px #8b7963, -2px -2px 10px #8b7963, 1px 1px 5px #2d2d2d;
+	border-radius: 5px;
 }
 
 
 /* about_profile */
 #about_profile{
 	margin: auto;
-	width: 180px;
-	height: 180px;
+	width: 150px;
+	height: 150px;
 }
 #about_profile img{
 	width: 100%;
@@ -43,19 +45,30 @@
 }
 #about_profile img:hover{
 	transform: rotate(360deg);
-	box-shadow: 1px 1px 5px #8b7963;
+	box-shadow: 1px 1px 5px #8b7963, 1px 1px 5px #2d2d2d, -1px -1px 5px #2d2d2d;
 }
 
 #about_info{
+	width: 85%;
 	text-align: center;
 	border: 1px solid purple;
-	margin: 10px;
+	margin: 18px auto;
 	color: #ffcc00;
 	font-size: 18px;
 	border: 2px #8b7963 solid;
 	border-radius: 5px;
 }
+#about_info h3{
+	font-size: 25px;
+	font-family: "dor";
+}
+#about_info p{
+	font-size: 20px;
+	font-family: "dor";
+}
 #about_links{
+	width: 85%;
+	margin: auto;
 	display: flex;
 	justify-content: space-between;
 }
@@ -71,5 +84,5 @@
 }
 #about_links img:hover{
 	transform: rotate(360deg);
-	box-shadow: 1px 1px 10px #2d2d2d;
+	box-shadow: 1px 1px 5px #2d2d2d, -1px -1px 5px #2d2d2d;
 }
