@@ -132,11 +132,12 @@ button i{
 	margin: auto;
 	color: #03c03c;
 	font-size: 15px;
-	line-height: 2em;
+	line-height: 1em;
 	text-align: center;
 	border-radius: 15px;
 	filter: drop-shadow(1px 1px 5px #2d2d2d);
 	display: none;
+	padding:  10px;
 }
 #triangle{
 	width: 0;
