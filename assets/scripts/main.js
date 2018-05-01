@@ -1,20 +1,18 @@
 // 页面加载调整页面高度
 window.onload = function(){
-	// 设置wrapper的高度，使之自适应浏览器高度
-	var wrapper = document.getElementById("wrapper");
-	var H = document.body.offsetHeight - 110;
-	wrapper.style.height = H + "px";
+// 	var wrapper = document.getElementById("wrapper");
+// 	var H = document.body.offsetHeight - 110;
+// 	wrapper.style.height = H + "px";
 	// tips高度
-	var tips = document.getElementById("tips");
-	var H2 = document.body.offsetHeight - 45;
-	tips.style.height = H2 + "px";
-	tips.style.marginTop = -H2 + "px";
+	// var tips = document.getElementById("tips");
+	// var H2 = document.body.offsetHeight - 45;
+	// tips.style.height = H2 + "px";
+	// tips.style.marginTop = -H2 + "px";
 	// about高度
-	var about = document.getElementById("about");
-	about.style.height = H2 + "px";
-	about.style.marginTop =  -H2 + "px";
+	// var about = document.getElementById("about");
+	// about.style.height = H2 + "px";
+	// about.style.marginTop =  -H2 + "px";
 }
-
 
 // 显示提示标签,隐藏关于标签
 var a_tips = document.getElementById("a_tips");
@@ -29,10 +27,9 @@ EventUtil.addHandler(a_about, "click", function(){
 	tips.style.display = "none";
 });
 
-
 // 全屏提示
-(function(){
-	var t = setTimeout(function(){
-		alert("为了最佳显示效果，请在全屏环境下使用系统！");
-	}, 150);
-})();
+// (function(){
+// 	var t = setTimeout(function(){
+// 		alert("为了最佳显示效果，请在全屏环境下使用系统！");
+// 	}, 150);
+// })();

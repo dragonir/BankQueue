@@ -13,39 +13,52 @@
 	<link rel="shortcut icon" href="./assets/images/bank.png">
 	<link rel="stylesheet" type="text/css" href="./assets/lib/font-awesome/css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="./assets/styles/index.css">
+	<link rel="stylesheet" type="text/css" href="./assets/lib/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
-
 <!-- 背景video -->
 <video autoplay="" loop="" id="bgvid">
     <source src="./assets/media/video-1.webm" type="video/webm">
     <source src="./assets/media/video-1.mp4" type="video/mp4">
 </video>
+<div class="mainContainer">
+	
+	<div id="titleZone">
+		<h1>银行排队演示系统</h1>
+		<h3>Bank Queuing Simulation System</h3>
+	</div>
 
-<div id="titleZone">
-	<h1>银行排队演示系统</h1>
-	<h3>Bank Queuing Simulation System</h3>
+	<!-- 登录区 -->
+	<div id="loginZone">
+		<div id="password">邀请码<span id="question">?</span>
+			<input type="text" name="password" placeholder="请输入6位邀请码">
+		</div>
+		<button onclick="validate()"><i class="fa fa-sign-in fa-lg"></i>登录</button>
+	</div>
+
+	<!-- 邀请码提示 -->
+	<div id="qom">
+		<p>请使用邀请码</p>
+		<p>"123456"</p>
+		<span id="triangle"></span>
+	</div>
 </div>
-
-<!-- 登录区 -->
-<div id="loginZone">
-	<label>邀请码<span id="question">?</span><input type="text" name="password" placeholder="请输入6位邀请码"></label>
-	<button onclick="validate()"><i class="fa fa-sign-in fa-lg"></i>登录</button>
+<div class="alert alert-warning">
+	<a href="#" class="close" data-dismiss="alert">&times;</a>
+	<strong>用户名或密码错误</strong>
 </div>
-
-
-<!-- 邀请码提示 -->
-<div id="qom">
-	<p>请使用邀请码</p>
-	<p>"123456"</p>
-	<span id="triangle"></span>
-</div>
-
 
 <!-- footer -->
 <footer>
 	<p>2018 &copy; WANGBIN</p>
 </footer>
 <script type="text/javascript" src="./assets/scripts/index.js"></script>
+<script type="text/javascript" src="./assets/lib/jquery/jquery-2.0.3.min.js"></script>
+<script type="text/javascript" src="./assets/lib/jquery/jquery-ui.min.js"></script>
+<script type="text/javascript" src="./assets/scripts/EventUtil.js"></script>
+<script type="text/javascript" src="./assets/lib/bootstrap/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+	
+</script>
 </body>
 </html>

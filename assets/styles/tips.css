@@ -1,5 +1,7 @@
 #tips{
 	width: 100%;
+	height: calc(100vh - 50px);
+	margin-top: calc(-100vh + 50px);
 	clear: both;
 	position: absolute;
 	display: none;
@@ -14,18 +16,18 @@
 div.tip{
 	font-size: 20px;
 	position: absolute;
-	color: #ffcc00;
+	color: green;
 	top: 100px;
 }
 div.tip p{
 	background-color: #2d2d2d;
 	display: block;
-	height: 30px;
-	padding: 15px;
-	line-height: 30px;
-	border-radius: 30px;
-	box-shadow: 1px 1px 10px #ccc;
-
+	height: 50px;
+	line-height: 50px;
+	padding: 0 20px;
+	border-radius: 50px;
+	box-shadow: 1px 1px 20px #ccc;
+	opacity: 0.7;
 }
 div.tip img{
 	position: relative;

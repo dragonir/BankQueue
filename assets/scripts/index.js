@@ -7,7 +7,8 @@ function validate(){
 		window.open("./home.html", "_self");
 	}
 	else{
-		alert("用户名或密码错误！")
+		alert("请输入正确的邀请码！");
+		// document.getElementsByClassName("alert")[0].style.display = "block";
 	}
 }
 

@@ -16,22 +16,31 @@
 	<link rel="stylesheet" type="text/css" href="./assets/styles/about.css">
 	<!-- font-awesome -->
 	<link rel="stylesheet" type="text/css" href="./assets/lib/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="./assets/lib/bootstrap/css/bootstrap.min.css">
 </head>
 <body>
 
 <!-- header -->
 <header>
-	<img src="./assets/images/bank.png">
-	<h1>银行排队演示系统 <span>Bank Queuing Simulation System</span></h1>
-	<ul>
-		<li><a href="./home.html">首页</a></li>
-		<li><a href="#" id="a_tips">使用方法</a></li>
-		<li><a href="#" id="a_about">关于</a></li>
-	</ul>
+	<nav class="navbar navbar-inverse" role="navigation">
+		<div class="navbar-header">
+			<img src="./assets/images/bank.png">
+			<a class="headerTitle">银行排队演示系统<b>&nbsp;&nbsp;&nbsp;&nbsp;Bank Queuing Simulation System</b></a>
+		</div>
+		<div class="pull-right">
+			<ul class="nav navbar-nav">
+				<li><a href="./home.html">首页</a></li>
+				<li><a href="#" id="a_tips">使用方法</a></li>
+				<li><a href="#" id="a_about">关于</a></li>
+			</ul>
+		</div>
+	</nav>
 </header>
 
 <!-- main -->
 <div id="main">
+	<div class="mainContainer">
+	<!-- title Zone -->
 	<div id="titleZone">
 		<div class="titleItem">系统设定</div>
 		<div class="titleItem">排队演示</div>
@@ -72,7 +81,7 @@
 47
 53</textarea>
 				<br>
-				<button id="generaterandom" class="btn"><i class="fa fa-refresh fa-lg fa-spin"></i>产生随机队列</button>
+				<button id="generaterandom" class="homeBtn"><i class="fa fa-refresh fa-lg fa-spin"></i>产生随机队列</button>
 				<br>
 			<!-- </div>
 
@@ -83,7 +92,7 @@
 				<label for="tellerscount">服务台总数量</label>
 				<input class="input" type="text" name="tellerscount" id="tellerscount" value="3"> 个
 				<br>
-				<button id="startsimulate" class="btn"><i class="fa fa-play-circle fa-lg"></i>开始模拟演示</button>
+				<button id="startsimulate" class="homeBtn"><i class="fa fa-play-circle fa-lg"></i>开始模拟演示</button>
 			</div>
 		</div>
 
@@ -101,12 +110,11 @@
 			<!-- 数据显示区 -->
 			<div id="results"></div>
 		</div>
-		
 		<div id="summary">
 		</div>
 	</div>
+	</div>
 </div>
-
 
 <!-- footer -->
 <footer>
@@ -167,6 +175,7 @@
 <script type="text/javascript" src="./assets/lib/phpjs/explode.js"></script>
 <script type="text/javascript" src="./assets/lib/phpjs/str_replace.js"></script>
 <script type="text/javascript" src="./assets/scripts/EventUtil.js"></script>
+<script type="text/javascript" src="./assets/lib/bootstrap/js/bootstrap.min.js"></script>
 <!--[if lt IE 9]>
 <script type="text/javascript" src="./assets/lib/html5shiv/html5shiv.js"></script>
 <![endif]-->
